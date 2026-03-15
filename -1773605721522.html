@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>בניה קלה | קבלן כללי בחדרה</title>
+<meta name="description" content="בניה קלה - קבלן כללי מקצועי בחדרה. בנייה קלה, שיפוצים, תוספות בנייה ועבודות גמר ברמה הגבוהה ביותר. דירוג 5/5.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;800;900&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#1e3a5f;
+  --primary-dark:#152a45;
+  --primary-light:#2a5080;
+  --accent:#D97706;
+  --accent-dark:#b86204;
+  --text:#1a1a2e;
+  --text-muted:#6b7280;
+  --bg:#ffffff;
+  --bg-soft:rgba(30,58,95,0.04);
+  --radius-sm:6px;
+  --radius:14px;
+  --radius-lg:24px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.12);
+  --transition:0.28s cubic-bezier(0.4,0,0.2,1);
+  --font-heading:'Frank Ruhl Libre',serif;
+  --font-body:'Heebo',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.7;font-weight:400;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;right:0;left:0;height:68px;z-index:1000;transition:all var(--transition)}
+nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 12px rgba(0,0,0,0.08)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--font-heading);font-size:1.45rem;font-weight:800;color:#fff;transition:color var(--transition)}
+nav.scrolled .nav-logo{color:var(--primary)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{color:rgba(255,255,255,0.9);font-weight:500;font-size:0.95rem;transition:color var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--accent);transition:width var(--transition)}
+.nav-links a:hover::after{width:100%}
+nav.scrolled .nav-links a{color:var(--text)}
+nav.scrolled .nav-links a:hover{color:var(--primary)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://serpapi.com/searches/69b71217d868ddd566d7d598/images/y9Ah16OBZIkAO9Xf662dN7dUAVaVMPplmHhLSfYaOG4.jpeg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,30,50,0.5) 0%,rgba(15,22,40,0.72) 100%)}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 24px}
+.hero-content h1{font-family:var(--font-heading);font-size:clamp(2.6rem,6vw,4.8rem);font-weight:800;color:#fff;line-height:1.15;margin-bottom:20px;letter-spacing:-0.02em}
+.hero-content p{color:rgba(255,255,255,0.85);font-size:clamp(1.05rem,2vw,1.3rem);max-width:600px;margin:0 auto 36px;font-weight:300;line-height:1.7}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 36px;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;font-weight:600;cursor:pointer;transition:all var(--transition);border:2px solid transparent}
+.btn-primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn-primary:hover{background:var(--accent-dark);border-color:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(217,119,6,0.35)}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,0.5)}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:#fff;transform:translateY(-2px)}
+.scroll-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;animation:gentleBounce 2.5s ease-in-out infinite}
+@keyframes gentleBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-12px)}}
+
+/* SECTIONS */
+section{padding:100px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:0.85rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px}
+.section-heading{font-family:var(--font-heading);font-size:clamp(2rem,4vw,2.8rem);font-weight:700;color:var(--primary-dark);line-height:1.25;margin-bottom:16px}
+.section-subtitle{color:var(--text-muted);font-size:clamp(1rem,1.5vw,1.15rem);max-width:560px;font-weight:300}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header .section-subtitle{margin:0 auto}
+
+/* ABOUT */
+.about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-text p{color:var(--text-muted);margin-top:18px;font-size:1.02rem;line-height:1.8}
+.about-text p:first-of-type{color:var(--text);font-weight:400}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat-card{background:#fff;border:1px solid rgba(30,58,95,0.08);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:all var(--transition)}
+.stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+.stat-number{font-family:var(--font-heading);font-size:2.4rem;font-weight:800;color:var(--primary);line-height:1.1}
+.stat-label{color:var(--text-muted);font-size:0.88rem;font-weight:500;margin-top:6px}
+.stat-card .stars{color:var(--accent);font-size:0.85rem;margin-top:4px;letter-spacing:2px}
+
+/* SERVICES */
+.services{background:var(--bg-soft)}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.service-card{background:#fff;border-radius:var(--radius);padding:36px 30px;transition:all var(--transition);border:1px solid rgba(30,58,95,0.06)}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+.service-icon{width:56px;height:56px;border-radius:12px;background:rgba(30,58,95,0.06);display:flex;align-items:center;justify-content:center;margin-bottom:20px;transition:background var(--transition)}
+.service-card:hover .service-icon{background:rgba(217,119,6,0.1)}
+.service-icon svg{width:26px;height:26px;color:var(--primary);transition:color var(--transition)}
+.service-card:hover .service-icon svg{color:var(--accent)}
+.service-card h3{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--primary-dark);margin-bottom:10px}
+.service-card p{color:var(--text-muted);font-size:0.95rem;line-height:1.7}
+
+/* WHY US */
+.why-us{background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.why-item{text-align:center;padding:20px}
+.why-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-light));display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 8px 25px rgba(30,58,95,0.2)}
+.why-icon svg{width:30px;height:30px;color:#fff}
+.why-item h3{font-family:var(--font-heading);font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:10px}
+.why-item p{color:var(--text-muted);font-size:0.95rem;line-height:1.7;max-width:320px;margin:0 auto}
+
+/* GALLERY */
+.gallery{background:var(--bg-soft)}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gallery-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.2) 0%,transparent 50%);opacity:0;transition:opacity var(--transition)}
+.gallery-item:hover::after{opacity:1}
+
+/* CONTACT */
+.contact{background:linear-gradient(180deg,var(--bg) 0%,var(--bg-soft) 100%)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.contact-info h2{font-family:var(--font-heading);font-size:2rem;font-weight:800;color:var(--primary-dark);margin-bottom:8px}
+.contact-info .tagline{color:var(--text-muted);margin-bottom:32px;font-size:1.02rem}
+.contact-detail{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px}
+.contact-detail-icon{width:44px;height:44px;min-width:44px;border-radius:10px;background:rgba(30,58,95,0.06);display:flex;align-items:center;justify-content:center}
+.contact-detail-icon svg{width:20px;height:20px;color:var(--primary)}
+.contact-detail-text{font-size:0.98rem}
+.contact-detail-text span{display:block;font-size:0.8rem;color:var(--text-muted);font-weight:500;margin-bottom:2px}
+.contact-detail-text a{color:var(--primary);font-weight:600;transition:color var(--transition)}
+.contact-detail-text a:hover{color:var(--accent)}
+.maps-btn{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:12px 28px;background:var(--primary);color:#fff;border-radius:var(--radius-sm);font-weight:600;font-size:0.95rem;transition:all var(--transition)}
+.maps-btn:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(30,58,95,0.3)}
+.maps-btn svg{width:18px;height:18px}
+.contact-form-card{background:#fff;border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow);border:1px solid rgba(30,58,95,0.06)}
+.contact-form-card h3{font-family:var(--font-heading);font-size:1.35rem;font-weight:700;color:var(--primary-dark);margin-bottom:24px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:0.88rem;font-weight:500;color:var(--text);margin-bottom:6px}
+.form-group input,.form-group textarea{width:100%;padding:13px 16px;border:1.5px solid rgba(30,58,95,0.12);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:0.98rem;color:var(--text);transition:border-color var(--transition),box-shadow var(--transition);background:#fafbfc;resize:vertical}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(30,58,95,0.1);background:#fff}
+.form-group textarea{height:110px}
+.btn-submit{width:100%;padding:15px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1.05rem;font-weight:600;cursor:pointer;transition:all var(--transition)}
+.btn-submit:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(217,119,6,0.3)}
+
+/* FOOTER */
+footer{background:var(--primary-dark);padding:48px 0 32px;text-align:center}
+footer .footer-name{font-family:var(--font-heading);font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:6px}
+footer .footer-tagline{color:rgba(255,255,255,0.5);font-size:0.95rem;margin-bottom:28px;font-weight:300}
+footer .footer-copy{color:rgba(255,255,255,0.3);font-size:0.82rem;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.65s ease-out,transform 0.65s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stats-grid .reveal:nth-child(2),.services-grid .reveal:nth-child(2),.why-grid .reveal:nth-child(2){transition-delay:0.1s}
+.stats-grid .reveal:nth-child(3),.services-grid .reveal:nth-child(3),.why-grid .reveal:nth-child(3){transition-delay:0.2s}
+.stats-grid .reveal:nth-child(4),.services-grid .reveal:nth-child(4){transition-delay:0.3s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .services-grid{grid-template-columns:1fr 1fr;gap:18px}
+  .why-grid{grid-template-columns:1fr;gap:30px}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:14px}
+  section{padding:72px 0}
+  .container{padding:0 24px}
+}
+@media(max-width:480px){
+  .nav-inner{padding:0 18px}
+  .nav-links{gap:20px}
+  .nav-links a{font-size:0.88rem}
+  section{padding:56px 0}
+  .container{padding:0 18px}
+  .services-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr;gap:12px}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn{width:100%;justify-content:center}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .stat-card{padding:20px 16px}
+  .stat-number{font-size:1.9rem}
+  .section-heading{margin-bottom:12px}
+  .section-header{margin-bottom:40px}
+  .contact-form-card{padding:28px 22px}
+  .service-card{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">בניה קלה</a>
+    <div class="nav-links">
+      <a href="#about">אודות</a>
+      <a href="#contact">צרו קשר</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>הבית שחלמתם עליו — נבנה אותו יחד</h1>
+    <p>קבלן כללי מקצועי בחדרה. בנייה קלה, שיפוצים ותוספות בנייה — ברמה הגבוהה ביותר ובמחיר הוגן.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">לקבלת הצעת מחיר חינם</a>
+      <a href="#about" class="btn btn-ghost">גלו עוד עלינו</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10l5 5 5-5"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="eyebrow">אודותינו</div>
+        <h2 class="section-heading">מומחיות בבנייה קלה ושיפוצים — כבר למעלה מעשור</h2>
+        <p>בניה קלה היא חברת קבלנות כללית המתמחה בבנייה קלה, שיפוצים מקיפים ותוספות בנייה באזור חדרה והסביבה. אנחנו מאמינים שכל פרויקט מתחיל בהקשבה — להבין את החזון שלכם ולהפוך אותו למציאות מוחשית.</p>
+        <p>הצוות שלנו מורכב מבעלי מקצוע מנוסים ומסורים, שמלווים כל לקוח מרגע התכנון הראשוני ועד למסירת המפתח. עם דגש על איכות חומרים, עמידה בלוחות זמנים ותקשורת שקופה — אנחנו לא רק בונים מבנים, אנחנו בונים אמון.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number">5.0</div>
+          <div class="stat-label">דירוג מושלם</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">+10</div>
+          <div class="stat-label">שנות ניסיון</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">+150</div>
+          <div class="stat-label">פרויקטים שהושלמו</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">שביעות רצון לקוחות</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">השירותים שלנו</div>
+      <h2 class="section-heading">כל מה שצריך לבנייה ושיפוץ — בכתובת אחת</h2>
+      <p class="section-subtitle">אנחנו מספקים מגוון רחב של שירותי בנייה ושיפוצים, מותאמים אישית לצרכים שלכם.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M9 9h1"/><path d="M14 9h1"/></svg>
+        </div>
+        <h3>בנייה קלה</h3>
+        <p>מבנים מפלדה קלה, קירות גבס, תקרות אקוסטיות ומחיצות. פתרונות בנייה מהירים ויעילים בטכנולוגיה מתקדמת.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 3.3a1 1 0 011.4 0l4.6 4.6a1 1 0 010 1.4L12 18H7v-5z"/><path d="M3 21h18"/><path d="M10 6l5 5"/></svg>
+        </div>
+        <h3>שיפוצים כלליים</h3>
+        <p>שיפוץ מקיף של דירות, בתים ומשרדים — מפירוק ועד גמר. הכל תחת קורת גג אחת, בליווי מקצועי צמוד.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9v10h14V9"/><line x1="12" y1="13" x2="12" y2="17"/><line x1="10" y1="15" x2="14" y2="15"/></svg>
+        </div>
+        <h3>תוספות בנייה</h3>
+        <p>הרחבת שטח המגורים עם תוספות חדרים, סגירת מרפסות ויחידות דיור נפרדות. התאמה מושלמת למבנה הקיים.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M4 20V10l4-2v12"/><path d="M8 8l4-4 4 4"/><path d="M12 4v10"/><path d="M16 10v10"/><path d="M20 14l-4-4"/></svg>
+        </div>
+        <h3>עבודות גמר</h3>
+        <p>ריצוף, חיפוי, צביעה ועבודות גימור ברמה הגבוהה ביותר. הפרטים הקטנים הם שעושים את ההבדל הגדול.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">למה לבחור בנו</div>
+      <h2 class="section-heading">בונים נכון. בונים עם אחריות.</h2>
+    </div>
+    <div class="why-grid">
+
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>עמידה בזמנים ובתקציב</h3>
+        <p>אנחנו יודעים שהזמן שלכם יקר. לכן אנחנו מתחייבים ללוח זמנים ברור ולתקציב מוסכם מראש — ללא הפתעות ותוספות מיותרות.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5 2 7L12 16l-6.5 4.5 2-7L2 9h7z"/></svg>
+        </div>
+        <h3>איכות ללא פשרות</h3>
+        <p>משתמשים רק בחומרי גלם מהשורה הראשונה ובבעלי מקצוע מיומנים. התוצאה — עבודה יסודית שעומדת במבחן השנים.</p>
+      </div>
+
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>ליווי אישי מא׳ ועד ת׳</h3>
+        <p>מנהל פרויקט ייעודי מלווה אתכם לאורך כל הדרך. תקשורת שקופה, עדכונים שוטפים ומענה מהיר לכל שאלה.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">מהעבודות שלנו</div>
+      <h2 class="section-heading">תמונות מהשטח</h2>
+      <p class="section-subtitle">הציצו בחלק מהפרויקטים שביצענו — כל עבודה מספרת סיפור של מקצועיות ותשומת לב.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b71217d868ddd566d7d598/images/y9Ah16OBZIkAO9Xf662dN7dUAVaVMPplmHhLSfYaOG4.jpeg" alt="פרויקט בנייה - בניה קלה חדרה" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b71217d868ddd566d7d598/images/kNwCsCkKaTC8uTYBpuvf-wjJJVDYnIHKKP-SvA-wne8.jpeg" alt="שיפוץ דירה - בניה קלה חדרה" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b71217d868ddd566d7d598/images/Bg6EwyQFwAgdriPrk-p2k0pfasndeJ5TYvlHQeB6olM.jpeg" alt="עבודות גמר - בניה קלה חדרה" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="reveal">
+        <div class="contact-info">
+          <h2>בואו נדבר על הפרויקט שלכם</h2>
+          <p class="tagline">השאירו פרטים או התקשרו — ונחזור אליכם תוך שעות עם הצעת מחיר מפורטת.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <span>כתובת</span>
+              רחוב אחד העם 23, חדרה
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <span>טלפון</span>
+              <a href="tel:054-250-2221" style="direction:ltr;display:inline-block">054-250-2221</a>
+            </div>
+          </div>
+
+          <a href="https://maps.google.com/?cid=2292253084880204018" target="_blank" rel="noopener" class="maps-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            נווטו אלינו בגוגל מפות
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="contact-form-card">
+          <h3>השאירו פרטים ונחזור אליכם</h3>
+          <form onsubmit="event.preventDefault();this.querySelector('.btn-submit').textContent='תודה! נחזור אליכם בהקדם 🙏';this.querySelector('.btn-submit').style.background='#16a34a'">
+            <div class="form-group">
+              <label for="name">שם מלא</label>
+              <input type="text" id="name" placeholder="הכניסו את שמכם" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">מספר טלפון</label>
+              <input type="tel" id="phone" placeholder="050-000-0000" required dir="ltr" style="text-align:right">
+            </div>
+            <div class="form-group">
+              <label for="message">ספרו לנו על הפרויקט</label>
+              <textarea id="message" placeholder="תארו בקצרה את הפרויקט — סוג העבודה, גודל משוער, לוח זמנים רצוי..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">שלחו הודעה</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-name">בניה קלה</div>
+    <div class="footer-tagline">בונים עבורכם — באיכות ובמסירות</div>
+    <div class="footer-copy">© 2025 בניה קלה. כל הזכויות שמורות.</div>
+  </div>
+</footer>
+
+<script>
+// Intersection Observer for reveal animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+const nav = document.querySelector('nav');
+let ticking = false;
+window.addEventListener('scroll', () => {
+  if (!ticking) { requestAnimationFrame(() => { nav.classList.toggle('scrolled', window.scrollY > 60); ticking = false; }); ticking = true; }
+});
+</script>
+</body>
+</html>
