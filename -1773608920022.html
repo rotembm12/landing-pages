@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ניסור בטון ביהלום | קידוח בטון | עבודות הריסה - חיפה</title>
+<meta name="description" content="ניסור בטון ביהלום, קידוח בטון ביהלום ועבודות הריסה במחיר הטוב ביותר באזור חיפה והצפון.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#D97706;
+  --primary-dark:#B45309;
+  --accent:#F59E0B;
+  --text:#1a1a2e;
+  --text-muted:#6b7280;
+  --bg:#ffffff;
+  --bg-soft:#FEF8F0;
+  --radius-sm:8px;
+  --radius:14px;
+  --radius-lg:24px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.12);
+  --transition:0.28s cubic-bezier(0.4,0,0.2,1);
+  --font-heading:'Rubik',sans-serif;
+  --font-body:'Heebo',sans-serif;
+}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+h1,h2,h3,h4{font-family:var(--font-heading);line-height:1.2}
+.container{max-width:1200px;margin:0 auto;padding-inline:24px}
+.section-eyebrow{color:var(--primary);font-weight:700;font-size:.88rem;letter-spacing:.04em;margin-bottom:10px;font-family:var(--font-heading)}
+.section-title{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800;color:var(--text);margin-bottom:14px}
+.section-subtitle{color:var(--text-muted);font-size:1.08rem;max-width:580px;line-height:1.7}
+.text-center{text-align:center}
+.mx-auto{margin-inline:auto}
+
+/* NAV */
+.nav{position:fixed;top:0;inset-inline:0;height:68px;z-index:1000;transition:background .35s ease,box-shadow .35s ease}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{font-family:var(--font-heading);font-weight:800;font-size:1.1rem;color:#fff;transition:color var(--transition);white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-link{color:rgba(255,255,255,0.9);font-size:.92rem;font-weight:500;transition:color var(--transition);position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-4px;inset-inline-start:0;width:0;height:2px;background:var(--primary);transition:width var(--transition)}
+.nav-link:hover::after{width:100%}
+.lang-btn{padding:6px 16px;border:1.5px solid rgba(255,255,255,0.6);border-radius:20px;color:#fff;font-size:.85rem;font-weight:600;transition:all var(--transition);font-family:var(--font-heading)}
+.lang-btn:hover{background:rgba(255,255,255,0.15)}
+.nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 20px rgba(0,0,0,0.08)}
+.nav.scrolled .nav-brand,.nav.scrolled .nav-link{color:var(--text)}
+.nav.scrolled .lang-btn{color:var(--text);border-color:var(--text-muted)}
+.nav.scrolled .nav-link::after{background:var(--primary)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;padding:4px}
+.nav-toggle span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:all .3s ease}
+.nav.scrolled .nav-toggle span,.nav.nav-open .nav-toggle span{background:var(--text)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://serpapi.com/searches/69b71dd2eb55a30b8f4b471f/images/g36wn2F4-j6d81uIozfd1XZHQXQ97AVYIMOmHd2-LQM.jpeg') center/cover no-repeat;background-color:#2a2a2a}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.45)0%,rgba(0,0,0,0.68)100%)}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:850px;padding:0 24px}
+.hero h1{color:#fff;font-size:clamp(2.6rem,6vw,4.5rem);font-weight:900;margin-bottom:20px;letter-spacing:-.02em}
+.hero p{color:rgba(255,255,255,0.88);font-size:clamp(1.05rem,2vw,1.3rem);margin-bottom:36px;max-width:650px;margin-inline:auto;line-height:1.8}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius-sm);font-weight:700;font-size:1rem;transition:all var(--transition);font-family:var(--font-heading)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 4px 20px rgba(217,119,6,0.35)}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(217,119,6,0.4)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5)}
+.btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:#fff}
+.scroll-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2.5s infinite}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,12px)}}
+
+/* ABOUT */
+.about{padding:100px 0}
+.about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.about-text p{color:var(--text-muted);margin-bottom:16px;font-size:1.02rem}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat-card{background:var(--bg);border:1px solid rgba(0,0,0,0.07);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:all var(--transition)}
+.stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:transparent}
+.stat-number{font-family:var(--font-heading);font-size:2.4rem;font-weight:900;color:var(--primary);line-height:1}
+.stat-label{color:var(--text-muted);font-size:.88rem;margin-top:6px;font-weight:500}
+
+/* SERVICES */
+.services{padding:100px 0;background:var(--bg-soft)}
+.services-header{text-align:center;margin-bottom:56px}
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.service-card{background:var(--bg);border:1px solid rgba(0,0,0,0.05);border-radius:var(--radius);padding:36px 28px;transition:all var(--transition)}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+.service-icon{width:56px;height:56px;background:var(--bg-soft);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--primary);transition:background var(--transition)}
+.service-card:hover .service-icon{background:var(--primary);color:#fff}
+.service-icon svg{width:28px;height:28px}
+.service-card h3{font-size:1.2rem;font-weight:700;margin-bottom:10px;color:var(--text)}
+.service-card p{color:var(--text-muted);font-size:.95rem;line-height:1.7}
+
+/* WHY US */
+.why{padding:100px 0}
+.why-header{text-align:center;margin-bottom:56px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.why-item{text-align:center}
+.why-icon{width:80px;height:80px;border-radius:50%;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--primary);transition:all var(--transition)}
+.why-item:hover .why-icon{background:var(--primary);color:#fff;transform:scale(1.08)}
+.why-icon svg{width:34px;height:34px}
+.why-item h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+.why-item p{color:var(--text-muted);font-size:.95rem;line-height:1.7;max-width:320px;margin-inline:auto}
+
+/* GALLERY */
+.gallery{padding:100px 0;background:var(--bg-soft)}
+.gallery-header{text-align:center;margin-bottom:56px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gallery-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.3)0%,transparent 50%);opacity:0;transition:opacity .3s ease}
+.gallery-item:hover::after{opacity:1}
+
+/* CONTACT */
+.contact{padding:100px 0}
+.contact-header{text-align:center;margin-bottom:56px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.contact-info h2{font-size:1.6rem;font-weight:800;margin-bottom:28px;color:var(--text)}
+.contact-detail{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px}
+.contact-detail svg{width:22px;height:22px;color:var(--primary);flex-shrink:0;margin-top:2px}
+.contact-detail span,.contact-detail a{color:var(--text-muted);font-size:1rem;line-height:1.6}
+.contact-detail a:hover{color:var(--primary)}
+.btn-maps{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:12px 24px;background:var(--text);color:#fff;border-radius:var(--radius-sm);font-weight:600;font-size:.95rem;transition:all var(--transition)}
+.btn-maps:hover{background:#333;transform:translateY(-2px)}
+.btn-maps svg{width:18px;height:18px}
+.contact-form{background:var(--bg);border:1px solid rgba(0,0,0,0.08);border-radius:var(--radius-lg);padding:40px;box-shadow:var(--shadow)}
+.form-group{margin-bottom:20px}
+.form-group input,.form-group textarea{width:100%;padding:14px 18px;border:1.5px solid rgba(0,0,0,0.1);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;color:var(--text);transition:border-color var(--transition),box-shadow var(--transition);background:var(--bg);outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(217,119,6,0.12)}
+.form-group textarea{height:120px;resize:vertical}
+.form-submit{width:100%;padding:16px;background:var(--primary);color:#fff;border-radius:var(--radius-sm);font-size:1.05rem;font-weight:700;font-family:var(--font-heading);transition:all var(--transition);border:none}
+.form-submit:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(217,119,6,0.3)}
+.form-success{display:none;text-align:center;padding:40px 20px}
+.form-success svg{width:56px;height:56px;color:var(--primary);margin-bottom:16px}
+.form-success h3{font-size:1.3rem;margin-bottom:8px;font-weight:700}
+.form-success p{color:var(--text-muted)}
+
+/* FOOTER */
+.footer{background:var(--text);padding:48px 0 32px;text-align:center}
+.footer-brand{font-family:var(--font-heading);font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:8px}
+.footer-tagline{color:rgba(255,255,255,0.5);font-size:.9rem;margin-bottom:24px}
+.footer-divider{width:60px;height:2px;background:var(--primary);margin:0 auto 24px;border-radius:2px}
+.footer-copy{color:rgba(255,255,255,0.35);font-size:.82rem}
+
+/* REVEAL ANIMATION */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .65s ease-out,transform .65s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:.1s}
+.reveal:nth-child(3){transition-delay:.2s}
+.reveal:nth-child(4){transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .services-grid{grid-template-columns:1fr 1fr;gap:18px}
+  .why-grid{grid-template-columns:1fr;gap:32px}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .contact-grid{grid-template-columns:1fr;gap:36px}
+  .about,.services,.why,.gallery,.contact{padding:72px 0}
+}
+@media(max-width:768px){
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:68px;inset-inline:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);flex-direction:column;padding:20px 24px 28px;gap:0;box-shadow:0 10px 30px rgba(0,0,0,0.1);display:none}
+  .nav-links.active{display:flex}
+  .nav-link{color:var(--text)!important;padding:12px 0;width:100%;font-size:1rem;border-bottom:1px solid rgba(0,0,0,0.05)}
+  .nav-link::after{display:none}
+  .lang-btn{color:var(--text)!important;border-color:var(--text-muted)!important;margin-top:8px;align-self:flex-start}
+  .nav.nav-open{background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+  .nav.nav-open .nav-brand{color:var(--text)}
+  .nav.nav-open .nav-toggle span{background:var(--text)}
+  .nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+  .nav-toggle.active span:nth-child(2){opacity:0}
+  .nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+}
+@media(max-width:480px){
+  .services-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .about,.services,.why,.gallery,.contact{padding:56px 0}
+  .hero h1{font-size:clamp(2rem,8vw,3rem)}
+  .hero p{font-size:1rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn{width:100%;justify-content:center}
+  .stats-grid{gap:14px}
+  .stat-number{font-size:2rem}
+  .contact-form{padding:28px 20px}
+  .service-card{padding:28px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-brand" data-i18n="nav_brand">ניסור וקידוח בטון ביהלום</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-link" data-i18n="nav_about">אודות</a></li>
+      <li><a href="#services" class="nav-link" data-i18n="nav_services">שירותים</a></li>
+      <li><a href="#gallery" class="nav-link" data-i18n="nav_gallery">גלריה</a></li>
+      <li><a href="#contact" class="nav-link" data-i18n="nav_contact">צור קשר</a></li>
+      <li><button class="lang-btn" id="langBtn" data-i18n="lang_toggle">EN</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" role="img" aria-label="ניסור בטון ביהלום"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">כשצריך לחתוך בטון – סומכים על יהלום</h1>
+    <p data-i18n="hero_subtitle">ניסור, קידוח והריסת בטון במחירים הטובים ביותר באזור חיפה והצפון. דיוק מקסימלי, שירות אמין, עבודה נקייה.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">קבלו הצעת מחיר חינם</a>
+      <a href="#about" class="btn btn-ghost" data-i18n="hero_cta2">הכירו אותנו</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round"><path d="M7 10l5 5 5-5"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="section-eyebrow" data-i18n="about_eyebrow">אודות החברה</div>
+        <h2 class="section-title" data-i18n="about_title">מומחים לניסור וקידוח בטון ביהלום</h2>
+        <p data-i18n="about_p1">אנחנו מתמחים בביצוע עבודות ניסור בטון ביהלום, קידוח בטון ביהלום ועבודות הריסה מכל סוג. עם ציוד מתקדם וצוות מיומן, אנו מספקים תוצאות מדויקות ונקיות בכל פרויקט.</p>
+        <p data-i18n="about_p2">אנו פועלים באזור חיפה, קריית הטכניון והצפון, ומשרתים קבלנים, חברות בנייה ולקוחות פרטיים. אנחנו מתחייבים למחיר ההוגן ביותר בשוק – ללא פשרות על איכות.</p>
+        <p data-i18n="about_p3">כל עבודה מבוצעת לפי התקנים המחמירים ביותר, עם דגש על בטיחות, דיוק ועמידה בלוחות זמנים. אצלנו, המילה &quot;מקצועיות&quot; היא לא סיסמא – היא דרך חיים.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat1_number">5.0</div>
+          <div class="stat-label" data-i18n="stat1_label">דירוג מושלם</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat2_number">8+</div>
+          <div class="stat-label" data-i18n="stat2_label">ביקורות מרוצות</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat3_number">15+</div>
+          <div class="stat-label" data-i18n="stat3_label">שנות ניסיון</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat4_number">2,000+</div>
+          <div class="stat-label" data-i18n="stat4_label">פרויקטים שהושלמו</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-eyebrow" data-i18n="services_eyebrow">השירותים שלנו</div>
+      <h2 class="section-title" data-i18n="services_title">פתרונות מקצועיים לכל אתגר בטון</h2>
+      <p class="section-subtitle mx-auto" data-i18n="services_subtitle">מגוון שירותי ניסור, קידוח והריסה עם ציוד יהלום מתקדם</p>
+    </div>
+    <div class="services-grid">
+      <!-- Service 1: Diamond Cutting -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/>
+            <line x1="12" y1="3" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="21"/>
+            <line x1="3" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="21" y2="12"/>
+            <line x1="5.6" y1="5.6" x2="7.8" y2="7.8"/><line x1="16.2" y1="16.2" x2="18.4" y2="18.4"/>
+          </svg>
+        </div>
+        <h3 data-i18n="service1_title">ניסור בטון ביהלום</h3>
+        <p data-i18n="service1_desc">חיתוך מדויק של קירות, רצפות ומשטחי בטון מזוין באמצעות מסורי יהלום מקצועיים. תוצאה נקייה וישרה בכל עובי.</p>
+      </div>
+      <!-- Service 2: Diamond Drilling -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="14" r="8"/><circle cx="12" cy="14" r="3.5"/>
+            <circle cx="12" cy="14" r="1" fill="currentColor" stroke="none"/>
+            <rect x="9" y="2" width="6" height="5" rx="1"/><line x1="12" y1="7" x2="12" y2="6"/>
+          </svg>
+        </div>
+        <h3 data-i18n="service2_title">קידוח בטון ביהלום</h3>
+        <p data-i18n="service2_desc">קידוח חורים בקטרים שונים בבטון מזוין, מ-2 צול ועד 20 צול. מתאים להעברת צנרת, חשמל ומיזוג אוויר.</p>
+      </div>
+      <!-- Service 3: Demolition -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 3L10 8.5l2 1.5-5 6"/><path d="M20 2l-6.5 4"/><path d="M22 4l-6.5 4"/>
+            <rect x="2" y="18" width="20" height="4" rx="1"/>
+            <path d="M6 18v-3M10 18v-5M14 18v-3M18 18v-4"/>
+          </svg>
+        </div>
+        <h3 data-i18n="service3_title">עבודות הריסה</h3>
+        <p data-i18n="service3_desc">הריסה מבוקרת ובטוחה של מבנים, קירות ומפלסים. כולל פינוי פסולת בניין ועבודה לפי תקנות הבטיחות.</p>
+      </div>
+      <!-- Service 4: Wall Openings -->
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="18" rx="2"/>
+            <rect x="8" y="9" width="8" height="12" rx="1"/>
+            <line x1="12" y1="16" x2="12" y2="17"/>
+          </svg>
+        </div>
+        <h3 data-i18n="service4_title">פתיחת פתחים בקירות</h3>
+        <p data-i18n="service4_desc">פתיחה מדויקת של פתחים לדלתות, חלונות ומעברים בקירות בטון מזוין, ללא פגיעה במבנה הקיים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="why-header reveal">
+      <div class="section-eyebrow" data-i18n="why_eyebrow">למה לבחור בנו</div>
+      <h2 class="section-title" data-i18n="why_title">ההבדל שלנו ניכר בכל חיתוך</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3 data-i18n="why1_title">דיוק מילימטרי</h3>
+        <p data-i18n="why1_desc">ציוד יהלום מהדור האחרון מבטיח חיתוכים נקיים ומדויקים ללא סדקים או נזק למבנה הסובב. תוצאה מושלמת בכל פעם.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 data-i18n="why2_title">המחיר הטוב ביותר</h3>
+        <p data-i18n="why2_desc">אנחנו מתחייבים למחירים הוגנים ושקופים, ללא עלויות נסתרות. קבלו הצעת מחיר ותשוו – לא תמצאו טוב יותר.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 data-i18n="why3_title">זמינות ואמינות</h3>
+        <p data-i18n="why3_desc">צוות מקצועי וזמין שמגיע בזמן, עובד ביעילות ומשלים כל פרויקט בלוח הזמנים המוסכם. אפשר לסמוך עלינו.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <div class="section-eyebrow" data-i18n="gallery_eyebrow">העבודות שלנו</div>
+      <h2 class="section-title" data-i18n="gallery_title">תוצאות שמדברות בעד עצמן</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b71dd2eb55a30b8f4b471f/images/g36wn2F4-j6d81uIozfd1XZHQXQ97AVYIMOmHd2-LQM.jpeg" alt="ניסור בטון ביהלום" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b71dd2eb55a30b8f4b471f/images/WJvWXKsMOWDnM50cp-9Sm1uKTrezkJBKpXuP7lvmad8.jpeg" alt="קידוח בטון ביהלום" loading="lazy">
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b71dd2eb55a30b8f4b471f/images/uB0064Y5ANllige9OhfREekgeWjiDN4SgXy74umGFa8.jpeg" alt="עבודות הריסה מקצועיות" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-header reveal">
+      <div class="section-eyebrow" data-i18n="contact_eyebrow">צרו קשר</div>
+      <h2 class="section-title" data-i18n="contact_title">מוכנים להתחיל? דברו איתנו</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h2 data-i18n="nav_brand">ניסור וקידוח בטון ביהלום</h2>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="contact_address">סגל זוטר 906/3, קריית הטכניון, חיפה</span>
+        </div>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:072-394-0824" data-i18n="contact_phone">072-394-0824</a>
+        </div>
+        <a href="https://maps.google.com/?cid=18208681634852416206" target="_blank" rel="noopener" class="btn-maps">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span data-i18n="contact_maps">נווטו אלינו</span>
+        </a>
+      </div>
+      <div class="contact-form reveal">
+        <form id="contactForm">
+          <div class="form-group">
+            <input type="text" data-i18n-pl="form_name" placeholder="שם מלא" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" data-i18n-pl="form_phone" placeholder="טלפון" required>
+          </div>
+          <div class="form-group">
+            <textarea data-i18n-pl="form_message" placeholder="ספרו לנו על הפרויקט שלכם"></textarea>
+          </div>
+          <button type="submit" class="form-submit" data-i18n="form_submit">שלחו הודעה</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+          <h3 data-i18n="success_title">תודה רבה!</h3>
+          <p data-i18n="success_desc">קיבלנו את פנייתכם ונחזור אליכם בהקדם.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand" data-i18n="nav_brand">ניסור וקידוח בטון ביהלום</div>
+    <div class="footer-tagline" data-i18n="footer_tagline">ניסור וקידוח בטון ביהלום | עבודות הריסה | חיפה והצפון</div>
+    <div class="footer-divider"></div>
+    <div class="footer-copy" data-i18n="footer_rights">© 2025 ניסור בטון ביהלום - קידוח בטון ביהלום - עבודות הריסה. כל הזכויות שמורות.</div>
+  </div>
+</footer>
+
+<script>
+const t = {
+  he: {
+    nav_brand: "ניסור וקידוח בטון ביהלום",
+    nav_about: "אודות",
+    nav_services: "שירותים",
+    nav_gallery: "גלריה",
+    nav_contact: "צור קשר",
+    lang_toggle: "EN",
+    hero_title: "כשצריך לחתוך בטון – סומכים על יהלום",
+    hero_subtitle: "ניסור, קידוח והריסת בטון במחירים הטובים ביותר באזור חיפה והצפון. דיוק מקסימלי, שירות אמין, עבודה נקייה.",
+    hero_cta: "קבלו הצעת מחיר חינם",
+    hero_cta2: "הכירו אותנו",
+    about_eyebrow: "אודות החברה",
+    about_title: "מומחים לניסור וקידוח בטון ביהלום",
+    about_p1: "אנחנו מתמחים בביצוע עבודות ניסור בטון ביהלום, קידוח בטון ביהלום ועבודות הריסה מכל סוג. עם ציוד מתקדם וצוות מיומן, אנו מספקים תוצאות מדויקות ונקיות בכל פרויקט.",
+    about_p2: "אנו פועלים באזור חיפה, קריית הטכניון והצפון, ומשרתים קבלנים, חברות בנייה ולקוחות פרטיים. אנחנו מתחייבים למחיר ההוגן ביותר בשוק – ללא פשרות על איכות.",
+    about_p3: "כל עבודה מבוצעת לפי התקנים המחמירים ביותר, עם דגש על בטיחות, דיוק ועמידה בלוחות זמנים. אצלנו, המילה \"מקצועיות\" היא לא סיסמא – היא דרך חיים.",
+    stat1_number: "5.0",
+    stat1_label: "דירוג מושלם",
+    stat2_number: "8+",
+    stat2_label: "ביקורות מרוצות",
+    stat3_number: "15+",
+    stat3_label: "שנות ניסיון",
+    stat4_number: "2,000+",
+    stat4_label: "פרויקטים שהושלמו",
+    services_eyebrow: "השירותים שלנו",
+    services_title: "פתרונות מקצועיים לכל אתגר בטון",
+    services_subtitle: "מגוון שירותי ניסור, קידוח והריסה עם ציוד יהלום מתקדם",
+    service1_title: "ניסור בטון ביהלום",
+    service1_desc: "חיתוך מדויק של קירות, רצפות ומשטחי בטון מזוין באמצעות מסורי יהלום מקצועיים. תוצאה נקייה וישרה בכל עובי.",
+    service2_title: "קידוח בטון ביהלום",
+    service2_desc: "קידוח חורים בקטרים שונים בבטון מזוין, מ-2 צול ועד 20 צול. מתאים להעברת צנרת, חשמל ומיזוג אוויר.",
+    service3_title: "עבודות הריסה",
+    service3_desc: "הריסה מבוקרת ובטוחה של מבנים, קירות ומפלסים. כולל פינוי פסולת בניין ועבודה לפי תקנות הבטיחות.",
+    service4_title: "פתיחת פתחים בקירות",
+    service4_desc: "פתיחה מדויקת של פתחים לדלתות, חלונות ומעברים בקירות בטון מזוין, ללא פגיעה במבנה הקיים.",
+    why_eyebrow: "למה לבחור בנו",
+    why_title: "ההבדל שלנו ניכר בכל חיתוך",
+    why1_title: "דיוק מילימטרי",
+    why1_desc: "ציוד יהלום מהדור האחרון מבטיח חיתוכים נקיים ומדויקים ללא סדקים או נזק למבנה הסובב. תוצאה מושלמת בכל פעם.",
+    why2_title: "המחיר הטוב ביותר",
+    why2_desc: "אנחנו מתחייבים למחירים הוגנים ושקופים, ללא עלויות נסתרות. קבלו הצעת מחיר ותשוו – לא תמצאו טוב יותר.",
+    why3_title: "זמינות ואמינות",
+    why3_desc: "צוות מקצועי וזמין שמגיע בזמן, עובד ביעילות ומשלים כל פרויקט בלוח הזמנים המוסכם. אפשר לסמוך עלינו.",
+    gallery_eyebrow: "העבודות שלנו",
+    gallery_title: "תוצאות שמדברות בעד עצמן",
+    contact_eyebrow: "צרו קשר",
+    contact_title: "מוכנים להתחיל? דברו איתנו",
+    contact_address: "סגל זוטר 906/3, קריית הטכניון, חיפה",
+    contact_phone: "072-394-0824",
+    contact_maps: "נווטו אלינו",
+    form_name: "שם מלא",
+    form_phone: "טלפון",
+    form_message: "ספרו לנו על הפרויקט שלכם",
+    form_submit: "שלחו הודעה",
+    success_title: "תודה רבה!",
+    success_desc: "קיבלנו את פנייתכם ונחזור אליכם בהקדם.",
+    footer_tagline: "ניסור וקידוח בטון ביהלום | עבודות הריסה | חיפה והצפון",
+    footer_rights: "© 2025 ניסור בטון ביהלום - קידוח בטון ביהלום - עבודות הריסה. כל הזכויות שמורות."
+  },
+  en: {
+    nav_brand: "Diamond Concrete Cutting",
+    nav_about: "About",
+    nav_services: "Services",
+    nav_gallery: "Gallery",
+    nav_contact: "Contact",
+    lang_toggle: "עב",
+    hero_title: "When Concrete Needs Cutting — Trust Diamond Precision",
+    hero_subtitle: "Professional diamond cutting, drilling & demolition at the best prices in the Haifa area. Maximum accuracy, reliable service, clean results.",
+    hero_cta: "Get a Free Quote",
+    hero_cta2: "Learn More",
+    about_eyebrow: "About Us",
+    about_title: "Diamond Concrete Cutting & Drilling Experts",
+    about_p1: "We specialize in diamond concrete cutting, diamond core drilling, and professional demolition work. With advanced equipment and a skilled team, we deliver precise and clean results on every project.",
+    about_p2: "Operating in Haifa, the Technion area, and throughout Northern Israel, we serve contractors, construction companies, and private clients. We guarantee the most competitive prices — without compromising quality.",
+    about_p3: "Every job is executed to the highest standards, with emphasis on safety, precision, and meeting deadlines. For us, \"professionalism\" isn't a slogan — it's a way of life.",
+    stat1_number: "5.0",
+    stat1_label: "Perfect Rating",
+    stat2_number: "8+",
+    stat2_label: "Happy Reviews",
+    stat3_number: "15+",
+    stat3_label: "Years Experience",
+    stat4_number: "2,000+",
+    stat4_label: "Projects Completed",
+    services_eyebrow: "Our Services",
+    services_title: "Professional Solutions for Every Concrete Challenge",
+    services_subtitle: "A full range of cutting, drilling, and demolition services with advanced diamond equipment",
+    service1_title: "Diamond Concrete Cutting",
+    service1_desc: "Precise cutting of walls, floors, and reinforced concrete surfaces using professional diamond saws. Clean, straight results at any thickness.",
+    service2_title: "Diamond Core Drilling",
+    service2_desc: "Core drilling in various diameters in reinforced concrete — from 2 inches up to 20 inches. Perfect for plumbing, electrical, and HVAC installations.",
+    service3_title: "Demolition Work",
+    service3_desc: "Controlled and safe demolition of structures, walls, and levels. Including construction waste removal, fully compliant with safety regulations.",
+    service4_title: "Wall Openings",
+    service4_desc: "Precise creation of openings for doors, windows, and passages in reinforced concrete walls — without damaging the existing structure.",
+    why_eyebrow: "Why Choose Us",
+    why_title: "The Difference Shows in Every Cut",
+    why1_title: "Millimeter Precision",
+    why1_desc: "Latest-generation diamond equipment ensures clean, precise cuts without cracks or damage to surrounding structures. Perfect results, every time.",
+    why2_title: "Best Price Guaranteed",
+    why2_desc: "We commit to fair, transparent pricing with no hidden costs. Get a quote and compare — you won't find better value anywhere.",
+    why3_title: "Reliable & Available",
+    why3_desc: "A professional team that arrives on time, works efficiently, and completes every project on the agreed schedule. You can count on us.",
+    gallery_eyebrow: "Our Work",
+    gallery_title: "Results That Speak for Themselves",
+    contact_eyebrow: "Contact Us",
+    contact_title: "Ready to Start? Talk to Us",
+    contact_address: "Segel Zotar 906/3, Kiryat HaTechnion, Haifa",
+    contact_phone: "072-394-0824",
+    contact_maps: "Navigate to Us",
+    form_name: "Full Name",
+    form_phone: "Phone Number",
+    form_message: "Tell us about your project",
+    form_submit: "Send Message",
+    success_title: "Thank You!",
+    success_desc: "We received your inquiry and will get back to you shortly.",
+    footer_tagline: "Diamond Concrete Cutting & Drilling | Demolition | Haifa & Northern Israel",
+    footer_rights: "© 2025 Diamond Concrete Cutting & Drilling — Demolition Services. All rights reserved."
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'he';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    if (t[lang][el.dataset.i18n]) el.textContent = t[lang][el.dataset.i18n];
+  });
+  document.querySelectorAll('[data-i18n-pl]').forEach(el => {
+    if (t[lang][el.dataset.i18nPl]) el.placeholder = t[lang][el.dataset.i18nPl];
+  });
+  document.title = lang === 'he'
+    ? 'ניסור בטון ביהלום | קידוח בטון | עבודות הריסה - חיפה'
+    : 'Diamond Concrete Cutting & Drilling | Demolition - Haifa';
+  localStorage.setItem('lang', lang);
+}
+
+// Language toggle
+document.getElementById('langBtn').addEventListener('click', () => {
+  setLang(currentLang === 'he' ? 'en' : 'he');
+});
+
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Mobile menu toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('active');
+  nav.classList.toggle('nav-open');
+});
+navLinks.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('active');
+    nav.classList.remove('nav-open');
+  });
+});
+
+// Intersection Observer reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Form visual-only submit
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  e.target.style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+});
+
+// Init language
+setLang(currentLang);
+</script>
+</body>
+</html>
