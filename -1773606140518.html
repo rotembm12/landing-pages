@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>חממה ג' | קיבוץ עין שמר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#2D6A4F;
+  --primary-dark:#1B4332;
+  --primary-light:#40916C;
+  --accent:#D4883A;
+  --accent-dark:#B8712E;
+  --text:#1a1a2e;
+  --text-muted:#6b7280;
+  --bg:#ffffff;
+  --bg-soft:#f2f8f5;
+  --bg-warm:#faf6f1;
+  --radius-sm:6px;
+  --radius:14px;
+  --radius-lg:24px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.12);
+  --transition:0.28s cubic-bezier(0.4,0,0.2,1);
+  --font-heading:'Rubik',sans-serif;
+  --font-body:'Heebo',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-heading);line-height:1.2}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;inset-inline:0;height:68px;display:flex;align-items:center;justify-content:space-between;padding-inline:clamp(1rem,4vw,3rem);z-index:100;transition:var(--transition)}
+.nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow-sm)}
+.nav-brand{font-family:var(--font-heading);font-weight:800;font-size:1.35rem;color:#fff;transition:var(--transition)}
+.nav.scrolled .nav-brand{color:var(--primary-dark)}
+.nav-links{display:flex;align-items:center;gap:clamp(1rem,2.5vw,2rem);list-style:none}
+.nav-links a{font-weight:500;font-size:0.95rem;color:rgba(255,255,255,0.9);transition:var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;inset-inline-start:0;width:0;height:2px;background:var(--accent);transition:var(--transition)}
+.nav-links a:hover::after{width:100%}
+.nav.scrolled .nav-links a{color:var(--text)}
+.nav.scrolled .nav-links a:hover{color:var(--primary)}
+.lang-btn{background:transparent;border:1.5px solid rgba(255,255,255,0.7);color:#fff;padding:5px 14px;border-radius:20px;font-family:var(--font-body);font-weight:600;font-size:0.85rem;cursor:pointer;transition:var(--transition)}
+.lang-btn:hover{background:rgba(255,255,255,0.15)}
+.nav.scrolled .lang-btn{border-color:var(--primary);color:var(--primary)}
+.nav.scrolled .lang-btn:hover{background:var(--primary);color:#fff}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;transition:var(--transition);border-radius:2px}
+.nav.scrolled .hamburger span{background:var(--text)}
+.mobile-overlay{display:none;position:fixed;inset:0;background:rgba(27,67,50,0.97);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-overlay.open{display:flex}
+.mobile-overlay a{color:#fff;font-family:var(--font-heading);font-size:1.5rem;font-weight:700;transition:var(--transition)}
+.mobile-overlay a:hover{color:var(--accent)}
+.mobile-close{position:absolute;top:20px;inset-inline-end:20px;background:none;border:none;cursor:pointer}
+.mobile-close svg{stroke:#fff;width:32px;height:32px}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://serpapi.com/searches/69b7140ec4f20fd2d3c65125/images/alKc-ZWXy1RqNOjNiWWGFZD8a3AFtArpPsSwJ7Hvy_I.jpeg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(27,67,50,0.5) 0%,rgba(27,67,50,0.72) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:0 1.5rem}
+.hero h1{font-size:clamp(2.6rem,6vw,4.8rem);font-weight:800;color:#fff;margin-bottom:1rem;letter-spacing:-0.02em}
+.hero p{font-size:clamp(1.05rem,2vw,1.3rem);color:rgba(255,255,255,0.88);margin-bottom:2.5rem;max-width:580px;margin-inline:auto}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:var(--radius-sm);font-family:var(--font-heading);font-weight:700;font-size:1rem;cursor:pointer;transition:var(--transition);border:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,136,58,0.35)}
+.btn-ghost{background:transparent;border:2px solid rgba(255,255,255,0.6);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,0.12);border-color:#fff;transform:translateY(-2px)}
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+.scroll-indicator svg{stroke:rgba(255,255,255,0.7);width:28px;height:28px}
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-10px)}}
+
+/* SECTIONS */
+.section{padding:clamp(56px,10vw,100px) clamp(1rem,5vw,3rem)}
+.container{max-width:1140px;margin:0 auto}
+.eyebrow{font-family:var(--font-heading);font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--primary);margin-bottom:0.75rem}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--text);margin-bottom:1rem}
+.section-subtitle{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--text-muted);max-width:560px;margin-bottom:3rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.about-copy p{color:var(--text-muted);margin-bottom:1.25rem;font-size:1.05rem}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.stat-card{background:var(--bg);border:1px solid #e5e7eb;border-radius:var(--radius);padding:1.75rem 1.5rem;text-align:center;transition:var(--transition)}
+.stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.stat-num{font-family:var(--font-heading);font-size:clamp(2rem,3vw,2.5rem);font-weight:800;color:var(--primary);line-height:1}
+.stat-label{font-size:0.88rem;color:var(--text-muted);margin-top:0.5rem}
+
+/* SERVICES */
+.bg-soft{background:var(--bg-soft)}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.service-card{background:var(--bg);border-radius:var(--radius);padding:2rem 1.75rem;transition:var(--transition);border:1px solid #e5e7eb}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.service-icon{width:56px;height:56px;border-radius:var(--radius-sm);background:var(--bg-soft);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.service-icon svg{width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:0.5rem}
+.service-card p{font-size:0.95rem;color:var(--text-muted);line-height:1.6}
+
+/* WHY US */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.why-item{text-align:center;padding:1.5rem}
+.why-icon{width:72px;height:72px;border-radius:50%;background:var(--bg-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.why-icon svg{width:32px;height:32px;stroke:var(--primary);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.why-item h3{font-size:1.1rem;font-weight:700;margin-bottom:0.5rem}
+.why-item p{font-size:0.95rem;color:var(--text-muted);line-height:1.6;max-width:320px;margin-inline:auto}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.gallery-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+.gallery-item:hover img{transform:scale(1.05)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.contact-info{padding-top:0.5rem}
+.contact-info h2{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:800;margin-bottom:1.5rem;color:var(--text)}
+.contact-detail{display:flex;align-items:flex-start;gap:12px;margin-bottom:1.25rem}
+.contact-detail svg{width:22px;height:22px;stroke:var(--primary);fill:none;stroke-width:1.5;flex-shrink:0;margin-top:3px}
+.contact-detail span{color:var(--text-muted);font-size:1.05rem}
+.btn-directions{display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;padding:12px 28px;background:var(--primary);color:#fff;border-radius:var(--radius-sm);font-weight:700;font-family:var(--font-heading);font-size:0.95rem;transition:var(--transition);border:none;cursor:pointer}
+.btn-directions:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(45,106,79,0.3)}
+.btn-directions svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
+.contact-form{background:var(--bg);border-radius:var(--radius-lg);padding:clamp(1.5rem,3vw,2.5rem);box-shadow:var(--shadow);border:1px solid #e5e7eb}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-weight:600;font-size:0.9rem;margin-bottom:0.4rem;color:var(--text)}
+.form-group input,.form-group textarea{width:100%;padding:12px 16px;border:1.5px solid #e5e7eb;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;transition:var(--transition);background:var(--bg);color:var(--text)}
+.form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(45,106,79,0.12)}
+.form-group textarea{resize:vertical;min-height:110px}
+.btn-submit{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-heading);font-weight:700;font-size:1.05rem;cursor:pointer;transition:var(--transition)}
+.btn-submit:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,136,58,0.35)}
+
+/* FOOTER */
+.footer{background:var(--text);padding:3rem clamp(1rem,5vw,3rem);text-align:center}
+.footer-brand{font-family:var(--font-heading);font-weight:800;font-size:1.4rem;color:#fff;margin-bottom:0.5rem}
+.footer-tagline{color:rgba(255,255,255,0.5);font-size:0.95rem;margin-bottom:1rem}
+.footer-copy{color:rgba(255,255,255,0.35);font-size:0.85rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.65s ease-out,transform 0.65s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:0.1s}
+.reveal:nth-child(3){transition-delay:0.2s}
+.reveal:nth-child(4){transition-delay:0.3s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr}
+  .why-item{padding:1rem 0}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:480px){
+  .services-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.4rem}
+  .hero-btns{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand" data-i18n="brand">חממה ג'</a>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav_about">אודות</a></li>
+    <li><a href="#services" data-i18n="nav_services">שירותים</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">גלריה</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">צור קשר</a></li>
+    <li><button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button></li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn" onclick="openMobile()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobile()">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="#about" onclick="closeMobile()" data-i18n="nav_about">אודות</a>
+  <a href="#services" onclick="closeMobile()" data-i18n="nav_services">שירותים</a>
+  <a href="#gallery" onclick="closeMobile()" data-i18n="nav_gallery">גלריה</a>
+  <a href="#contact" onclick="closeMobile()" data-i18n="nav_contact">צור קשר</a>
+  <button class="lang-btn" style="margin-top:1rem;font-size:1rem;padding:8px 24px" onclick="toggleLang();closeMobile()" data-i18n="lang_toggle">EN</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">כל גן מתחיל כאן</h1>
+    <p data-i18n="hero_subtitle">צמחים, שתילים וירוק לכל עונה — ישירות מהחממה בקיבוץ עין שמר</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">בואו לבקר</a>
+      <a href="#about" class="btn btn-ghost" data-i18n="hero_cta2">גלו עוד</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <div class="eyebrow" data-i18n="about_eyebrow">הסיפור שלנו</div>
+        <h2 class="section-title" data-i18n="about_title">מהלב של עמק השומרון אל הגינה שלכם</h2>
+        <p data-i18n="about_p1">חממה ג' ממוקמת בלב קיבוץ עין שמר, אחד הקיבוצים הוותיקים בישראל שנוסד בשנת 1927. כאן, בין שדות עמק השומרון הפורייים, אנו מגדלים צמחים באהבה ומסירות כבר שנים רבות.</p>
+        <p data-i18n="about_p2">החממה שלנו משלבת ידע חקלאי עמוק עם גישה אישית ומקצועית. אנחנו מאמינים שכל צמח שיוצא מכאן נושא איתו חלק מהאדמה הטובה הזו — ואת הטיפול הצמוד שקיבל מהיום הראשון.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal"><div class="stat-num" data-i18n="stat1_num">1927</div><div class="stat-label" data-i18n="stat1_label">שנת ייסוד הקיבוץ</div></div>
+        <div class="stat-card reveal"><div class="stat-num" data-i18n="stat2_num">500+</div><div class="stat-label" data-i18n="stat2_label">זני צמחים</div></div>
+        <div class="stat-card reveal"><div class="stat-num" data-i18n="stat3_num">98</div><div class="stat-label" data-i18n="stat3_label">שנות חקלאות</div></div>
+        <div class="stat-card reveal"><div class="stat-num" data-i18n="stat4_num">∞</div><div class="stat-label" data-i18n="stat4_label">תשוקה לירוק</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section bg-soft" id="services">
+  <div class="container">
+    <div class="eyebrow reveal" data-i18n="services_eyebrow">מה אנחנו מציעים</div>
+    <h2 class="section-title reveal" data-i18n="services_title">שירותים ומוצרים</h2>
+    <p class="section-subtitle reveal" data-i18n="services_subtitle">מגוון רחב של צמחים ושירותי גינון מקצועיים</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22c-4-3.5-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8.5-8 12z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 data-i18n="service1_name">שתילים ונבטים</h3>
+        <p data-i18n="service1_desc">מבחר עשיר של שתילי ירקות, תבלינים ופרחים לגינה הביתית ולחקלאות.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+        </div>
+        <h3 data-i18n="service2_name">צמחי נוי</h3>
+        <p data-i18n="service2_desc">צמחי בית וגינה, עציצים מעוצבים ועצי נוי למרפסת ולחצר.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <h3 data-i18n="service3_name">ייעוץ גינון</h3>
+        <p data-i18n="service3_desc">ליווי מקצועי בתכנון הגינה שלכם — מבחירת הצמחים ועד תחזוקה שוטפת.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3 data-i18n="service4_name">ציוד וחומרי גינון</h3>
+        <p data-i18n="service4_desc">אדמות, דשנים, כלי עבודה וכל מה שצריך כדי שהגינה תפרח.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="eyebrow reveal" data-i18n="why_eyebrow">למה דווקא אנחנו</div>
+      <h2 class="section-title reveal" style="max-width:600px;margin-inline:auto" data-i18n="why_title">הסיבות לבחור בחממה ג'</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 data-i18n="why1_title">גידול מקומי ואיכותי</h3>
+        <p data-i18n="why1_desc">כל צמח גדל כאן, באדמה שלנו, תחת פיקוח צמוד. בלי ייבוא, בלי פשרות על איכות.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 data-i18n="why2_title">ייעוץ אישי וחם</h3>
+        <p data-i18n="why2_desc">אנחנו מכירים כל צמח בשמו. נשמח לייעץ ולהתאים לכם בדיוק את מה שהגינה שלכם צריכה.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 data-i18n="why3_title">מחירים הוגנים</h3>
+        <p data-i18n="why3_desc">ישירות מהחממה אליכם — בלי מתווכים, בלי תוספות מיותרות. איכות במחיר שפוי.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section bg-soft" id="gallery">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="eyebrow reveal" data-i18n="gallery_eyebrow">הצצה לחממה</div>
+      <h2 class="section-title reveal" data-i18n="gallery_title">גלריית תמונות</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><img src="https://serpapi.com/searches/69b7140ec4f20fd2d3c65125/images/alKc-ZWXy1RqNOjNiWWGFZD8a3AFtArpPsSwJ7Hvy_I.jpeg" alt="חממה ג' - תמונה 1" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="https://serpapi.com/searches/69b7140ec4f20fd2d3c65125/images/l5AScRjtALMUgLOvxzlsR-2Bc20G97LS7BFCGvZu90E.jpeg" alt="חממה ג' - תמונה 2" loading="lazy"></div>
+      <div class="gallery-item reveal"><img src="https://serpapi.com/searches/69b7140ec4f20fd2d3c65125/images/xoOJ_xOck7SM0e6h5oE0m1xQayYZnOKLUyZlLPQA124.jpeg" alt="חממה ג' - תמונה 3" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact" style="background:var(--bg-warm)">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="eyebrow" data-i18n="contact_eyebrow">בואו לבקר</div>
+        <h2 data-i18n="contact_title" class="section-title">צרו איתנו קשר</h2>
+        <div class="contact-detail">
+          <svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="contact_address">קיבוץ עין שמר, ישראל</span>
+        </div>
+        <a href="https://maps.google.com/?cid=16864433712665858771" target="_blank" rel="noopener" class="btn-directions">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span data-i18n="contact_directions">הוראות הגעה</span>
+        </a>
+      </div>
+      <div class="contact-form reveal">
+        <form onsubmit="event.preventDefault()">
+          <div class="form-group">
+            <label data-i18n="contact_form_name">שם מלא</label>
+            <input type="text" data-i18n-placeholder="contact_form_name">
+          </div>
+          <div class="form-group">
+            <label data-i18n="contact_form_phone">טלפון</label>
+            <input type="tel" data-i18n-placeholder="contact_form_phone">
+          </div>
+          <div class="form-group">
+            <label data-i18n="contact_form_message">מה תרצו לשאול?</label>
+            <textarea data-i18n-placeholder="contact_form_message"></textarea>
+          </div>
+          <button type="submit" class="btn-submit" data-i18n="contact_form_submit">שלחו הודעה</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand" data-i18n="brand">חממה ג'</div>
+  <div class="footer-tagline" data-i18n="footer_tagline">צמחים באהבה מלב עמק השומרון</div>
+  <div class="footer-copy" data-i18n="footer_rights">© 2025 חממה ג'. כל הזכויות שמורות.</div>
+</footer>
+
+<script>
+const t = {
+  he: {
+    brand: "חממה ג'",
+    nav_about: "אודות",
+    nav_services: "שירותים",
+    nav_gallery: "גלריה",
+    nav_contact: "צור קשר",
+    lang_toggle: "EN",
+    hero_title: "כל גן מתחיל כאן",
+    hero_subtitle: "צמחים, שתילים וירוק לכל עונה — ישירות מהחממה בקיבוץ עין שמר",
+    hero_cta: "בואו לבקר",
+    hero_cta2: "גלו עוד",
+    about_eyebrow: "הסיפור שלנו",
+    about_title: "מהלב של עמק השומרון אל הגינה שלכם",
+    about_p1: "חממה ג' ממוקמת בלב קיבוץ עין שמר, אחד הקיבוצים הוותיקים בישראל שנוסד בשנת 1927. כאן, בין שדות עמק השומרון הפורייים, אנו מגדלים צמחים באהבה ומסירות כבר שנים רבות.",
+    about_p2: "החממה שלנו משלבת ידע חקלאי עמוק עם גישה אישית ומקצועית. אנחנו מאמינים שכל צמח שיוצא מכאן נושא איתו חלק מהאדמה הטובה הזו — ואת הטיפול הצמוד שקיבל מהיום הראשון.",
+    stat1_num: "1927",
+    stat1_label: "שנת ייסוד הקיבוץ",
+    stat2_num: "500+",
+    stat2_label: "זני צמחים",
+    stat3_num: "98",
+    stat3_label: "שנות חקלאות",
+    stat4_num: "∞",
+    stat4_label: "תשוקה לירוק",
+    services_eyebrow: "מה אנחנו מציעים",
+    services_title: "שירותים ומוצרים",
+    services_subtitle: "מגוון רחב של צמחים ושירותי גינון מקצועיים",
+    service1_name: "שתילים ונבטים",
+    service1_desc: "מבחר עשיר של שתילי ירקות, תבלינים ופרחים לגינה הביתית ולחקלאות.",
+    service2_name: "צמחי נוי",
+    service2_desc: "צמחי בית וגינה, עציצים מעוצבים ועצי נוי למרפסת ולחצר.",
+    service3_name: "ייעוץ גינון",
+    service3_desc: "ליווי מקצועי בתכנון הגינה שלכם — מבחירת הצמחים ועד תחזוקה שוטפת.",
+    service4_name: "ציוד וחומרי גינון",
+    service4_desc: "אדמות, דשנים, כלי עבודה וכל מה שצריך כדי שהגינה תפרח.",
+    why_eyebrow: "למה דווקא אנחנו",
+    why_title: "הסיבות לבחור בחממה ג'",
+    why1_title: "גידול מקומי ואיכותי",
+    why1_desc: "כל צמח גדל כאן, באדמה שלנו, תחת פיקוח צמוד. בלי ייבוא, בלי פשרות על איכות.",
+    why2_title: "ייעוץ אישי וחם",
+    why2_desc: "אנחנו מכירים כל צמח בשמו. נשמח לייעץ ולהתאים לכם בדיוק את מה שהגינה שלכם צריכה.",
+    why3_title: "מחירים הוגנים",
+    why3_desc: "ישירות מהחממה אליכם — בלי מתווכים, בלי תוספות מיותרות. איכות במחיר שפוי.",
+    gallery_eyebrow: "הצצה לחממה",
+    gallery_title: "גלריית תמונות",
+    contact_eyebrow: "בואו לבקר",
+    contact_title: "צרו איתנו קשר",
+    contact_address: "קיבוץ עין שמר, ישראל",
+    contact_directions: "הוראות הגעה",
+    contact_form_name: "שם מלא",
+    contact_form_phone: "טלפון",
+    contact_form_message: "מה תרצו לשאול?",
+    contact_form_submit: "שלחו הודעה",
+    footer_tagline: "צמחים באהבה מלב עמק השומרון",
+    footer_rights: "© 2025 חממה ג'. כל הזכויות שמורות."
+  },
+  en: {
+    brand: "Hamama G",
+    nav_about: "About",
+    nav_services: "Services",
+    nav_gallery: "Gallery",
+    nav_contact: "Contact",
+    lang_toggle: "עב",
+    hero_title: "Every Garden Starts Here",
+    hero_subtitle: "Plants, seedlings, and greenery for every season — straight from the greenhouse at Kibbutz Ein Shemer",
+    hero_cta: "Come Visit",
+    hero_cta2: "Learn More",
+    about_eyebrow: "Our Story",
+    about_title: "From the Heart of the Shomron Valley to Your Garden",
+    about_p1: "Hamama G is located in the heart of Kibbutz Ein Shemer, one of Israel's oldest kibbutzim, founded in 1927. Here, among the fertile fields of the Shomron region, we've been growing plants with love and dedication for many years.",
+    about_p2: "Our greenhouse combines deep agricultural knowledge with a personal, professional approach. We believe every plant that leaves here carries a piece of this good earth — and the close care it received from day one.",
+    stat1_num: "1927",
+    stat1_label: "Kibbutz Founded",
+    stat2_num: "500+",
+    stat2_label: "Plant Varieties",
+    stat3_num: "98",
+    stat3_label: "Years of Agriculture",
+    stat4_num: "∞",
+    stat4_label: "Passion for Green",
+    services_eyebrow: "What We Offer",
+    services_title: "Services & Products",
+    services_subtitle: "A wide range of plants and professional gardening services",
+    service1_name: "Seedlings & Sprouts",
+    service1_desc: "A rich selection of vegetable, herb, and flower seedlings for home gardens and agriculture.",
+    service2_name: "Ornamental Plants",
+    service2_desc: "Indoor and outdoor plants, designer pots, and ornamental trees for your balcony and yard.",
+    service3_name: "Garden Consulting",
+    service3_desc: "Professional guidance for planning your garden — from plant selection to ongoing maintenance.",
+    service4_name: "Supplies & Equipment",
+    service4_desc: "Soils, fertilizers, tools, and everything you need to make your garden flourish.",
+    why_eyebrow: "Why Choose Us",
+    why_title: "Reasons to Choose Hamama G",
+    why1_title: "Locally Grown Quality",
+    why1_desc: "Every plant is grown here, in our soil, under close supervision. No imports, no compromises on quality.",
+    why2_title: "Warm Personal Advice",
+    why2_desc: "We know every plant by name. We're happy to advise and find exactly what your garden needs.",
+    why3_title: "Fair Prices",
+    why3_desc: "Direct from the greenhouse to you — no middlemen, no unnecessary markups. Quality at a fair price.",
+    gallery_eyebrow: "A Peek Inside",
+    gallery_title: "Photo Gallery",
+    contact_eyebrow: "Come Visit",
+    contact_title: "Get in Touch",
+    contact_address: "Kibbutz Ein Shemer, Israel",
+    contact_directions: "Get Directions",
+    contact_form_name: "Full Name",
+    contact_form_phone: "Phone",
+    contact_form_message: "What would you like to ask?",
+    contact_form_submit: "Send Message",
+    footer_tagline: "Plants grown with love from the heart of the Shomron Valley",
+    footer_rights: "© 2025 Hamama G. All rights reserved."
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'he';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[lang][key]) el.textContent = t[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[lang][key]) el.placeholder = t[lang][key];
+  });
+  document.title = lang === 'he' ? "חממה ג' | קיבוץ עין שמר" : "Hamama G | Kibbutz Ein Shemer";
+}
+
+function toggleLang() {
+  setLang(currentLang === 'he' ? 'en' : 'he');
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Mobile menu
+function openMobile() { document.getElementById('mobileMenu').classList.add('open'); }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// Intersection Observer for reveals
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Init language
+setLang(currentLang);
+</script>
+</body>
+</html>
