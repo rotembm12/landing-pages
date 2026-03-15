@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>משק עין גדי | טריות מהשדה לשולחן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&family=Rubik:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#4a7c59;
+  --primary-dark:#3a6347;
+  --primary-light:#5d9970;
+  --accent:#c8943e;
+  --accent-dark:#b07f2f;
+  --text:#1a1a2e;
+  --text-muted:#6b7280;
+  --bg:#ffffff;
+  --bg-soft:rgba(74,124,89,0.04);
+  --bg-warm:#faf8f4;
+  --radius-sm:6px;
+  --radius:14px;
+  --radius-lg:24px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.12);
+  --transition:0.28s cubic-bezier(0.4,0,0.2,1);
+  --font-heading:'Rubik',sans-serif;
+  --font-body:'Heebo',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-heading);line-height:1.2}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+ul{list-style:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:68px;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);transition:var(--transition)}
+.nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:var(--shadow)}
+.nav-brand{font-family:var(--font-heading);font-weight:700;font-size:1.25rem;color:#fff;transition:var(--transition)}
+.nav.scrolled .nav-brand{color:var(--primary-dark)}
+.nav-links{display:flex;align-items:center;gap:clamp(16px,2.5vw,36px)}
+.nav-links a{color:rgba(255,255,255,0.9);font-weight:500;font-size:0.95rem;transition:var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;inset-inline-start:0;width:0;height:2px;background:var(--accent);transition:var(--transition)}
+.nav-links a:hover::after{width:100%}
+.nav.scrolled .nav-links a{color:var(--text)}
+.lang-toggle{background:transparent;border:2px solid rgba(255,255,255,0.6);color:#fff;padding:6px 16px;border-radius:30px;font-family:var(--font-body);font-weight:600;font-size:0.85rem;cursor:pointer;transition:var(--transition);letter-spacing:0.5px}
+.lang-toggle:hover{background:rgba(255,255,255,0.15);border-color:#fff}
+.nav.scrolled .lang-toggle{border-color:var(--primary);color:var(--primary)}
+.nav.scrolled .lang-toggle:hover{background:var(--primary);color:#fff}
+
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2.5px;background:#fff;border-radius:2px;transition:var(--transition)}
+.nav.scrolled .hamburger span{background:var(--text)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://serpapi.com/searches/69b7163d0fa72eaa491b4db5/images/mRg6fig5SAcDNpXTUzlQcCys48BuajXNdzFf6ibCI9M.jpeg') center/cover no-repeat}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,26,46,0.4) 0%,rgba(26,26,46,0.65) 100%)}
+.hero-content{position:relative;z-index:2;max-width:800px;padding:0 24px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.8rem);font-weight:800;color:#fff;margin-bottom:20px;letter-spacing:-0.02em}
+.hero p{font-size:clamp(1.05rem,2vw,1.35rem);color:rgba(255,255,255,0.88);max-width:600px;margin:0 auto 40px;font-weight:300;line-height:1.8}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 36px;border-radius:50px;font-family:var(--font-heading);font-weight:600;font-size:1rem;cursor:pointer;border:none;transition:var(--transition)}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(200,148,62,0.35)}
+.btn-primary:hover{background:var(--accent-dark);box-shadow:0 8px 30px rgba(200,148,62,0.45)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.5)}
+.btn-ghost:hover{background:rgba(255,255,255,0.12);border-color:#fff}
+.btn-solid{background:var(--primary);color:#fff;box-shadow:0 4px 20px rgba(74,124,89,0.3)}
+.btn-solid:hover{background:var(--primary-dark);box-shadow:0 8px 30px rgba(74,124,89,0.4)}
+
+.scroll-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;animation:scrollBounce 2s infinite}
+.scroll-indicator svg{width:28px;height:28px;stroke:rgba(255,255,255,0.7);fill:none;stroke-width:2}
+@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
+/* SECTIONS */
+section{padding:clamp(56px,10vw,100px) clamp(20px,4vw,60px)}
+.container{max-width:1200px;margin:0 auto}
+.eyebrow{font-family:var(--font-heading);font-weight:600;font-size:0.85rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);display:inline-block}
+.section-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;color:var(--text);margin-bottom:16px;letter-spacing:-0.01em}
+.section-subtitle{font-size:clamp(1rem,1.5vw,1.15rem);color:var(--text-muted);max-width:560px;line-height:1.8;font-weight:400}
+
+/* ABOUT */
+.about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(40px,6vw,80px);align-items:start;margin-top:48px}
+.about-text p{color:var(--text-muted);font-size:1.05rem;margin-top:20px;line-height:1.9}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.stat-card{background:var(--bg);border:1px solid rgba(74,124,89,0.12);border-radius:var(--radius);padding:28px 24px;text-align:center;transition:var(--transition)}
+.stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--primary)}
+.stat-number{font-family:var(--font-heading);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:800;color:var(--primary);margin-bottom:4px}
+.stat-label{font-size:0.9rem;color:var(--text-muted);font-weight:500}
+
+/* SERVICES */
+.services{background:var(--bg-warm)}
+.services-header{text-align:center;margin-bottom:56px}
+.services-header .section-subtitle{margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.service-card{background:var(--bg);border-radius:var(--radius);padding:36px 28px;transition:var(--transition);border:1px solid rgba(0,0,0,0.04)}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.service-icon{width:60px;height:60px;border-radius:var(--radius-sm);background:rgba(74,124,89,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.service-icon svg{width:28px;height:28px;stroke:var(--primary);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px;color:var(--text)}
+.service-card p{font-size:0.95rem;color:var(--text-muted);line-height:1.7}
+
+/* WHY US */
+.why-us{background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px}
+.why-item{text-align:center}
+.why-icon{width:80px;height:80px;border-radius:50%;background:rgba(74,124,89,0.08);display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.why-icon svg{width:36px;height:36px;stroke:var(--primary);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.why-item h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+.why-item p{font-size:0.95rem;color:var(--text-muted);line-height:1.8;max-width:320px;margin:0 auto}
+
+/* GALLERY */
+.gallery{background:var(--bg-warm)}
+.gallery-header{text-align:center;margin-bottom:48px}
+.gallery-header .section-subtitle{margin:0 auto}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gallery-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.gallery-item:hover img{transform:scale(1.04)}
+
+/* CONTACT */
+.contact{background:var(--bg)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,80px);margin-top:48px;align-items:start}
+.contact-info h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:24px;color:var(--text)}
+.contact-detail{display:flex;align-items:flex-start;gap:16px;margin-bottom:24px}
+.contact-detail-icon{width:44px;height:44px;border-radius:50%;background:rgba(74,124,89,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-detail-icon svg{width:20px;height:20px;stroke:var(--primary);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contact-detail-text{font-size:1rem;color:var(--text-muted);line-height:1.7}
+.contact-detail-text strong{color:var(--text);display:block;margin-bottom:2px}
+.map-btn{margin-top:8px}
+
+.contact-form{background:var(--bg);border-radius:var(--radius-lg);padding:clamp(28px,4vw,44px);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+.contact-form h3{font-size:1.3rem;font-weight:700;margin-bottom:24px;color:var(--text)}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:6px}
+.form-group input,.form-group textarea{width:100%;padding:14px 18px;border:1.5px solid #e2e5ea;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:1rem;color:var(--text);transition:var(--transition);background:var(--bg);outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(74,124,89,0.12)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{width:100%;padding:16px;background:var(--primary);color:#fff;border:none;border-radius:50px;font-family:var(--font-heading);font-weight:600;font-size:1.05rem;cursor:pointer;transition:var(--transition)}
+.form-submit:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(74,124,89,0.3)}
+
+/* FOOTER */
+.footer{background:#111;color:#fff;padding:48px clamp(20px,4vw,60px);text-align:center}
+.footer-brand{font-family:var(--font-heading);font-weight:700;font-size:1.4rem;margin-bottom:8px}
+.footer-tagline{color:rgba(255,255,255,0.5);font-size:0.95rem;margin-bottom:20px}
+.footer-copy{color:rgba(255,255,255,0.35);font-size:0.85rem}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.65s ease-out,transform 0.65s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:0.1s}
+.reveal:nth-child(3){transition-delay:0.2s}
+.reveal:nth-child(4){transition-delay:0.3s}
+
+/* MOBILE NAV */
+.mobile-menu{display:none;position:fixed;top:68px;inset-inline-start:0;inset-inline-end:0;background:rgba(255,255,255,0.98);backdrop-filter:blur(16px);padding:24px;flex-direction:column;gap:20px;box-shadow:var(--shadow);z-index:999}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);font-weight:500;font-size:1.1rem;padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr}
+  .why-item{max-width:400px;margin:0 auto}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+@media(max-width:480px){
+  .services-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn{width:100%;justify-content:center;max-width:280px}
+}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:2000;display:none;align-items:center;justify-content:center;cursor:pointer}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90%;max-height:90vh;border-radius:var(--radius);object-fit:contain}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-brand" data-i18n="brand">משק עין גדי</a>
+  <div class="nav-links">
+    <a href="#about" data-i18n="nav_about">אודות</a>
+    <a href="#services" data-i18n="nav_services">מה אנחנו מציעים</a>
+    <a href="#gallery" data-i18n="nav_gallery">גלריה</a>
+    <a href="#contact" data-i18n="nav_contact">צרו קשר</a>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">EN</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" data-i18n="nav_about" onclick="closeMenu()">אודות</a>
+  <a href="#services" data-i18n="nav_services" onclick="closeMenu()">מה אנחנו מציעים</a>
+  <a href="#gallery" data-i18n="nav_gallery" onclick="closeMenu()">גלריה</a>
+  <a href="#contact" data-i18n="nav_contact" onclick="closeMenu()">צרו קשר</a>
+  <button class="lang-toggle" onclick="toggleLang()" data-i18n="lang_btn" style="align-self:flex-start">EN</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">טריות אמיתית, ישר מהאדמה אליכם</h1>
+    <p data-i18n="hero_sub">תוצרת חקלאית טרייה מהמשק שלנו בגן השומרון — בטעם שרק הטבע יודע לתת</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">בואו לבקר אותנו</a>
+      <a href="#about" class="btn btn-ghost" data-i18n="hero_cta2">גלו את הסיפור שלנו</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="eyebrow" data-i18n="about_eyebrow">הסיפור שלנו</div>
+        <h2 class="section-title" data-i18n="about_title">משק משפחתי עם שורשים עמוקים באדמה</h2>
+        <p data-i18n="about_p1">משק עין גדי הוא משק חקלאי משפחתי הממוקם בלב המושבה גן השומרון, אחד היישובים הוותיקים באזור השרון. כאן, באדמה הפורייה של עמק חפר, אנחנו מגדלים תוצרת טרייה ואיכותית מתוך אהבה אמיתית לאדמה ולחקלאות.</p>
+        <p data-i18n="about_p2">אנחנו מאמינים שהדרך הטובה ביותר לאכול היא הדרך הפשוטה — תוצרת שגדלה באופן טבעי, נקטפת בשיא הבשלות, ומגיעה אליכם ללא מתווכים. כל פרי וירק שיוצא מהמשק שלנו עובר את המבחן הפשוט: האם היינו מגישים אותו למשפחה שלנו?</p>
+        <p data-i18n="about_p3">גן השומרון, שנוסד בשנת 1934, הוא קהילה חקלאית עם מסורת ארוכה של עבודת אדמה. אנחנו גאים להמשיך את המורשת הזו ולהביא לכם את הטעם האותנטי של ישראל.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat1_num">1934</div>
+          <div class="stat-label" data-i18n="stat1_label">שנת ייסוד המושבה</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat2_num">90+</div>
+          <div class="stat-label" data-i18n="stat2_label">שנות חקלאות</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat3_num">100%</div>
+          <div class="stat-label" data-i18n="stat3_label">תוצרת טרייה</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-number" data-i18n="stat4_num">365</div>
+          <div class="stat-label" data-i18n="stat4_label">ימים בשנה</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="eyebrow" style="justify-content:center" data-i18n="services_eyebrow">מה אנחנו מציעים</div>
+      <h2 class="section-title" data-i18n="services_title">מהמשק — ישר אליכם</h2>
+      <p class="section-subtitle" data-i18n="services_sub">כל מה שאתם צריכים לשולחן בריא וטעים, ממקום אחד</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6 2 11c0 3 1.5 5.5 4 7v4l3-2c1 .3 2 .5 3 .5 5.52 0 10-4 10-9.5S17.52 2 12 2z" fill="none"/><circle cx="8" cy="11" r="1.5" fill="none"/><circle cx="12" cy="8" r="1.5" fill="none"/><circle cx="16" cy="11" r="1.5" fill="none"/></svg>
+        </div>
+        <h3 data-i18n="svc1_title">ירקות טריים מהשדה</h3>
+        <p data-i18n="svc1_desc">ירקות עונתיים שנקטפו הבוקר — עגבניות, מלפפונים, פלפלים, חסה ועוד. טריות שאפשר לטעום בכל ביס.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="7" fill="none"/><path d="M12 5c-2 0-4 1.5-4 3.5S10 12 12 12s4-1.5 4-3.5S14 5 12 5z" fill="none"/></svg>
+        </div>
+        <h3 data-i18n="svc2_title">ביצים מהלול</h3>
+        <p data-i18n="svc2_desc">ביצים טריות מתרנגולות חופשיות שגדלות באוויר הפתוח. חלמון כתום ועשיר — בדיוק כמו שצריך להיות.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3C7 3 3 7 3 12c0 4 2.5 7.5 6 9h6c3.5-1.5 6-5 6-9 0-5-4-9-9-9z" fill="none"/><path d="M12 3c0 4-3 6-3 9s1.5 5 3 6c1.5-1 3-3 3-6s-3-5-3-9z" fill="none"/></svg>
+        </div>
+        <h3 data-i18n="svc3_title">פירות העונה</h3>
+        <p data-i18n="svc3_desc">פירות מתוקים ובשלים לפי העונה — רימונים, תאנים, הדרים ועוד. טעם שמזכיר את הילדות.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14" fill="none"/><path d="M9 21v-6h6v6M9 9h.01M15 9h.01" fill="none"/></svg>
+        </div>
+        <h3 data-i18n="svc4_title">סיורים במשק</h3>
+        <p data-i18n="svc4_desc">חוויה חקלאית לכל המשפחה — בואו לראות, ללמוד ולקטוף בעצמכם. חיבור אמיתי לאדמה ולטבע.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="why">
+  <div class="container">
+    <div class="services-header">
+      <div class="eyebrow" style="justify-content:center" data-i18n="why_eyebrow">למה דווקא אנחנו</div>
+      <h2 class="section-title" data-i18n="why_title">ההבדל מורגש בטעם</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h3 data-i18n="why1_title">ישר מהמקור</h3>
+        <p data-i18n="why1_desc">בלי מתווכים, בלי אחסון ממושך, בלי שרשרת קירור ארוכה. מהשדה אליכם — ברגל, באוטו, או במשלוח. תוצרת שנקטפה היום ומגיעה היום.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3 data-i18n="why2_title">גידול אחראי</h3>
+        <p data-i18n="why2_desc">אנחנו מגדלים בשיטות שמכבדות את האדמה — שימוש מינימלי בכימיקלים, מחזור מים, וטיפוח המגוון הביולוגי. חקלאות שטוב לה, טוב לכם.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 data-i18n="why3_title">משפחה, לא תאגיד</h3>
+        <p data-i18n="why3_desc">אנחנו מכירים כל עץ ושיח. כשאתם קונים מאיתנו, אתם מקבלים לא רק מוצר — אתם מקבלים יחס אישי, המלצות, ושיחה טובה על הדרך.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <div class="eyebrow" style="justify-content:center" data-i18n="gallery_eyebrow">גלריה</div>
+      <h2 class="section-title" data-i18n="gallery_title">תמונות מהמשק</h2>
+      <p class="section-subtitle" data-i18n="gallery_sub">הצצה לחיים הירוקים שלנו בגן השומרון</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal" onclick="openLightbox(this)">
+        <img src="https://serpapi.com/searches/69b7163d0fa72eaa491b4db5/images/mRg6fig5SAcDNpXTUzlQcCys48BuajXNdzFf6ibCI9M.jpeg" alt="משק עין גדי" loading="lazy">
+      </div>
+      <div class="gallery-item reveal" onclick="openLightbox(this)">
+        <img src="https://serpapi.com/searches/69b7163d0fa72eaa491b4db5/images/yla2PptF8_CwiNv83cgy0U5RZtN4yiSYUF05uxeRUWs.jpeg" alt="משק עין גדי" loading="lazy">
+      </div>
+      <div class="gallery-item reveal" onclick="openLightbox(this)">
+        <img src="https://serpapi.com/searches/69b7163d0fa72eaa491b4db5/images/bJyvQ8-xECN7OdJ3VegJZJfidas1Wjq9WhiceZyu8rc.jpeg" alt="משק עין גדי" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="eyebrow" data-i18n="contact_eyebrow">צרו קשר</div>
+    <h2 class="section-title" data-i18n="contact_title">נשמח לשמוע מכם</h2>
+    <p class="section-subtitle" data-i18n="contact_sub">שאלות, הזמנות, או סתם לברר מה טרי היום — אנחנו כאן</p>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h2 data-i18n="brand">משק עין גדי</h2>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong data-i18n="address_label">כתובת</strong>
+            <span data-i18n="address_value">10, גן השומרון, ישראל</span>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="3" fill="none"/><path d="M8 10h8M8 14h5" fill="none"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong data-i18n="hours_label">שעות פעילות</strong>
+            <span data-i18n="hours_value">ראשון - שישי, 7:00–17:00</span>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?cid=17131570120586459459" target="_blank" rel="noopener" class="btn btn-solid map-btn" data-i18n="map_btn">
+          פתחו ב-Google Maps
+        </a>
+      </div>
+      <div class="contact-form reveal">
+        <h3 data-i18n="form_title">השאירו פרטים ונחזור אליכם</h3>
+        <div class="form-group">
+          <label data-i18n="form_name">שם מלא</label>
+          <input type="text" data-i18n-placeholder="form_name_ph" placeholder="איך קוראים לכם?">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_phone">טלפון</label>
+          <input type="tel" data-i18n-placeholder="form_phone_ph" placeholder="050-000-0000">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_msg">הודעה</label>
+          <textarea data-i18n-placeholder="form_msg_ph" placeholder="ספרו לנו במה נוכל לעזור..."></textarea>
+        </div>
+        <button class="form-submit" data-i18n="form_submit" onclick="handleSubmit(event)">שלחו הודעה</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand" data-i18n="brand">משק עין גדי</div>
+  <div class="footer-tagline" data-i18n="footer_tagline">טריות אמיתית מגן השומרון</div>
+  <div class="footer-copy" data-i18n="footer_copy">© 2025 משק עין גדי. כל הזכויות שמורות.</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img src="" alt="" id="lightboxImg">
+</div>
+
+<script>
+const t = {
+  he: {
+    brand: "משק עין גדי",
+    nav_about: "אודות",
+    nav_services: "מה אנחנו מציעים",
+    nav_gallery: "גלריה",
+    nav_contact: "צרו קשר",
+    lang_btn: "EN",
+    hero_title: "טריות אמיתית, ישר מהאדמה אליכם",
+    hero_sub: "תוצרת חקלאית טרייה מהמשק שלנו בגן השומרון — בטעם שרק הטבע יודע לתת",
+    hero_cta: "בואו לבקר אותנו",
+    hero_cta2: "גלו את הסיפור שלנו",
+    about_eyebrow: "הסיפור שלנו",
+    about_title: "משק משפחתי עם שורשים עמוקים באדמה",
+    about_p1: "משק עין גדי הוא משק חקלאי משפחתי הממוקם בלב המושבה גן השומרון, אחד היישובים הוותיקים באזור השרון. כאן, באדמה הפורייה של עמק חפר, אנחנו מגדלים תוצרת טרייה ואיכותית מתוך אהבה אמיתית לאדמה ולחקלאות.",
+    about_p2: "אנחנו מאמינים שהדרך הטובה ביותר לאכול היא הדרך הפשוטה — תוצרת שגדלה באופן טבעי, נקטפת בשיא הבשלות, ומגיעה אליכם ללא מתווכים. כל פרי וירק שיוצא מהמשק שלנו עובר את המבחן הפשוט: האם היינו מגישים אותו למשפחה שלנו?",
+    about_p3: "גן השומרון, שנוסד בשנת 1934, הוא קהילה חקלאית עם מסורת ארוכה של עבודת אדמה. אנחנו גאים להמשיך את המורשת הזו ולהביא לכם את הטעם האותנטי של ישראל.",
+    stat1_num: "1934",
+    stat1_label: "שנת ייסוד המושבה",
+    stat2_num: "90+",
+    stat2_label: "שנות חקלאות",
+    stat3_num: "100%",
+    stat3_label: "תוצרת טרייה",
+    stat4_num: "365",
+    stat4_label: "ימים בשנה",
+    services_eyebrow: "מה אנחנו מציעים",
+    services_title: "מהמשק — ישר אליכם",
+    services_sub: "כל מה שאתם צריכים לשולחן בריא וטעים, ממקום אחד",
+    svc1_title: "ירקות טריים מהשדה",
+    svc1_desc: "ירקות עונתיים שנקטפו הבוקר — עגבניות, מלפפונים, פלפלים, חסה ועוד. טריות שאפשר לטעום בכל ביס.",
+    svc2_title: "ביצים מהלול",
+    svc2_desc: "ביצים טריות מתרנגולות חופשיות שגדלות באוויר הפתוח. חלמון כתום ועשיר — בדיוק כמו שצריך להיות.",
+    svc3_title: "פירות העונה",
+    svc3_desc: "פירות מתוקים ובשלים לפי העונה — רימונים, תאנים, הדרים ועוד. טעם שמזכיר את הילדות.",
+    svc4_title: "סיורים במשק",
+    svc4_desc: "חוויה חקלאית לכל המשפחה — בואו לראות, ללמוד ולקטוף בעצמכם. חיבור אמיתי לאדמה ולטבע.",
+    why_eyebrow: "למה דווקא אנחנו",
+    why_title: "ההבדל מורגש בטעם",
+    why1_title: "ישר מהמקור",
+    why1_desc: "בלי מתווכים, בלי אחסון ממושך, בלי שרשרת קירור ארוכה. מהשדה אליכם — ברגל, באוטו, או במשלוח. תוצרת שנקטפה היום ומגיעה היום.",
+    why2_title: "גידול אחראי",
+    why2_desc: "אנחנו מגדלים בשיטות שמכבדות את האדמה — שימוש מינימלי בכימיקלים, מחזור מים, וטיפוח המגוון הביולוגי. חקלאות שטוב לה, טוב לכם.",
+    why3_title: "משפחה, לא תאגיד",
+    why3_desc: "אנחנו מכירים כל עץ ושיח. כשאתם קונים מאיתנו, אתם מקבלים לא רק מוצר — אתם מקבלים יחס אישי, המלצות, ושיחה טובה על הדרך.",
+    gallery_eyebrow: "גלריה",
+    gallery_title: "תמונות מהמשק",
+    gallery_sub: "הצצה לחיים הירוקים שלנו בגן השומרון",
+    contact_eyebrow: "צרו קשר",
+    contact_title: "נשמח לשמוע מכם",
+    contact_sub: "שאלות, הזמנות, או סתם לברר מה טרי היום — אנחנו כאן",
+    address_label: "כתובת",
+    address_value: "10, גן השומרון, ישראל",
+    hours_label: "שעות פעילות",
+    hours_value: "ראשון - שישי, 7:00–17:00",
+    map_btn: "פתחו ב-Google Maps",
+    form_title: "השאירו פרטים ונחזור אליכם",
+    form_name: "שם מלא",
+    form_name_ph: "איך קוראים לכם?",
+    form_phone: "טלפון",
+    form_phone_ph: "050-000-0000",
+    form_msg: "הודעה",
+    form_msg_ph: "ספרו לנו במה נוכל לעזור...",
+    form_submit: "שלחו הודעה",
+    footer_tagline: "טריות אמיתית מגן השומרון",
+    footer_copy: "© 2025 משק עין גדי. כל הזכויות שמורות."
+  },
+  en: {
+    brand: "Meshek Ein Gedi",
+    nav_about: "About",
+    nav_services: "What We Offer",
+    nav_gallery: "Gallery",
+    nav_contact: "Contact",
+    lang_btn: "עב",
+    hero_title: "Real Freshness, Straight From the Earth to You",
+    hero_sub: "Fresh farm produce from our homestead in Gan HaShomron — with a taste only nature can deliver",
+    hero_cta: "Come Visit Us",
+    hero_cta2: "Discover Our Story",
+    about_eyebrow: "Our Story",
+    about_title: "A Family Farm With Deep Roots in the Land",
+    about_p1: "Meshek Ein Gedi is a family-run farm nestled in the heart of Gan HaShomron, one of the most established agricultural communities in central Israel. Here, in the fertile soil of the Hefer Valley, we grow fresh, premium produce with a genuine love for the land and farming.",
+    about_p2: "We believe the best way to eat is the simplest way — produce that's grown naturally, picked at peak ripeness, and brought to you without middlemen. Every fruit and vegetable that leaves our farm passes one simple test: would we serve it to our own family?",
+    about_p3: "Gan HaShomron, founded in 1934, is an agricultural community with a long tradition of working the land. We're proud to carry on this heritage and bring you the authentic taste of Israel.",
+    stat1_num: "1934",
+    stat1_label: "Year Community Founded",
+    stat2_num: "90+",
+    stat2_label: "Years of Farming",
+    stat3_num: "100%",
+    stat3_label: "Fresh Produce",
+    stat4_num: "365",
+    stat4_label: "Days a Year",
+    services_eyebrow: "What We Offer",
+    services_title: "From Our Farm — Straight to You",
+    services_sub: "Everything you need for a healthy, delicious table — from a single source",
+    svc1_title: "Fresh Vegetables",
+    svc1_desc: "Seasonal vegetables picked this morning — tomatoes, cucumbers, peppers, lettuce and more. Freshness you can taste in every bite.",
+    svc2_title: "Farm Fresh Eggs",
+    svc2_desc: "Fresh eggs from free-range hens raised in the open air. Deep orange yolks — exactly how eggs are meant to be.",
+    svc3_title: "Seasonal Fruits",
+    svc3_desc: "Sweet, ripe fruits according to the season — pomegranates, figs, citrus and more. Flavors that remind you of childhood.",
+    svc4_title: "Farm Tours",
+    svc4_desc: "An agricultural experience for the whole family — come see, learn, and pick your own. A real connection to the earth and nature.",
+    why_eyebrow: "Why Choose Us",
+    why_title: "The Difference Is in the Taste",
+    why1_title: "Direct From Source",
+    why1_desc: "No middlemen, no long storage, no extended cold chains. From the field to you — on foot, by car, or delivered. Harvested today, at your table today.",
+    why2_title: "Responsible Farming",
+    why2_desc: "We grow using methods that respect the earth — minimal chemicals, water recycling, and nurturing biodiversity. Farming that's good for the land is good for you.",
+    why3_title: "Family, Not Corporate",
+    why3_desc: "We know every tree and bush. When you buy from us, you don't just get a product — you get personal service, honest recommendations, and good conversation along the way.",
+    gallery_eyebrow: "Gallery",
+    gallery_title: "Photos From the Farm",
+    gallery_sub: "A glimpse into our green life in Gan HaShomron",
+    contact_eyebrow: "Contact",
+    contact_title: "We'd Love to Hear From You",
+    contact_sub: "Questions, orders, or just checking what's fresh today — we're here",
+    address_label: "Address",
+    address_value: "10, Gan HaShomron, Israel",
+    hours_label: "Working Hours",
+    hours_value: "Sunday – Friday, 7:00 AM – 5:00 PM",
+    map_btn: "Open in Google Maps",
+    form_title: "Leave Your Details & We'll Get Back",
+    form_name: "Full Name",
+    form_name_ph: "What's your name?",
+    form_phone: "Phone",
+    form_phone_ph: "050-000-0000",
+    form_msg: "Message",
+    form_msg_ph: "Tell us how we can help...",
+    form_submit: "Send Message",
+    footer_tagline: "Real freshness from Gan HaShomron",
+    footer_copy: "© 2025 Meshek Ein Gedi. All rights reserved."
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'he';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[lang][key]) el.textContent = t[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (t[lang][key]) el.placeholder = t[lang][key];
+  });
+
+  // Update lang toggle buttons
+  document.querySelectorAll('.lang-toggle').forEach(btn => {
+    btn.textContent = lang === 'he' ? 'EN' : 'עב';
+  });
+}
+
+function toggleLang() {
+  setLang(currentLang === 'he' ? 'en' : 'he');
+}
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Lightbox
+function openLightbox(el) {
+  const src = el.querySelector('img').src;
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+// Form visual feedback
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target;
+  const origText = btn.textContent;
+  btn.textContent = currentLang === 'he' ? '✓ נשלח בהצלחה!' : '✓ Sent Successfully!';
+  btn.style.background = '#2d8a4e';
+  setTimeout(() => {
+    btn.textContent = origText;
+    btn.style.background = '';
+  }, 2500);
+}
+
+// Init
+setLang(currentLang);
+</script>
+</body>
+</html>
