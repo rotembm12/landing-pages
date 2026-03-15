@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hanson Israel | Concrete & Building Materials — Hadera Factory</title>
+<meta name="description" content="Hanson Israel — a HeidelbergCement subsidiary. Ready-mix concrete, aggregates, asphalt and cement products. 60+ years building Israel's future.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#2d3a4a;
+  --primary-dark:#1e2a38;
+  --primary-light:rgba(45,58,74,0.08);
+  --accent:#c57b2a;
+  --accent-dark:#a86620;
+  --accent-light:rgba(197,123,42,0.12);
+  --text:#1a1a2e;
+  --text-muted:#6b7280;
+  --bg:#ffffff;
+  --bg-soft:rgba(45,58,74,0.035);
+  --bg-warm:#faf8f5;
+  --radius-sm:6px;
+  --radius:14px;
+  --radius-lg:24px;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);
+  --shadow:0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg:0 20px 60px rgba(0,0,0,0.12);
+  --transition:0.28s cubic-bezier(0.4,0,0.2,1);
+  --font-heading:'DM Serif Display',serif;
+  --font-body:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;height:68px;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.5rem,4vw,3rem);transition:var(--transition)}
+nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 12px rgba(0,0,0,0.08)}
+.nav-brand{font-family:var(--font-heading);font-size:1.25rem;color:#fff;transition:var(--transition);letter-spacing:0.01em}
+nav.scrolled .nav-brand{color:var(--primary-dark)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:0.9rem;font-weight:600;color:rgba(255,255,255,0.9);transition:var(--transition);letter-spacing:0.02em;text-transform:uppercase}
+nav.scrolled .nav-links a{color:var(--text)}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent)!important;color:#fff!important;padding:0.5rem 1.25rem;border-radius:var(--radius-sm);font-weight:600!important;transition:var(--transition)}
+.nav-cta:hover{background:var(--accent-dark)!important;transform:translateY(-1px)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(26,26,46,0.5) 0%,rgba(26,26,46,0.72) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:860px;padding:0 1.5rem}
+.hero-content h1{font-family:var(--font-heading);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;color:#fff;line-height:1.12;margin-bottom:1.25rem;letter-spacing:-0.01em}
+.hero-content h1 span{color:var(--accent);font-style:italic}
+.hero-content p{font-size:clamp(1.05rem,2vw,1.3rem);color:rgba(255,255,255,0.85);max-width:600px;margin:0 auto 2.5rem;line-height:1.65;font-weight:400}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:0.95rem;font-weight:700;cursor:pointer;transition:var(--transition);border:none;letter-spacing:0.02em}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 4px 20px rgba(197,123,42,0.35)}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(197,123,42,0.4)}
+.btn-ghost{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.4)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.1);transform:translateY(-2px)}
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;animation:bounce 2s infinite}
+.scroll-indicator svg{width:28px;height:28px;stroke:rgba(255,255,255,0.6);stroke-width:2;fill:none}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
+
+/* SECTIONS */
+section{padding:clamp(56px,10vw,100px) 0}
+.container{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,4vw,2.5rem)}
+.eyebrow{font-size:0.8rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.6rem}
+.eyebrow::before{content:'';width:28px;height:2px;background:var(--accent);display:inline-block}
+.section-title{font-family:var(--font-heading);font-size:clamp(2rem,4vw,3rem);color:var(--primary-dark);line-height:1.2;margin-bottom:1rem}
+.section-subtitle{font-size:1.05rem;color:var(--text-muted);max-width:560px;line-height:1.7}
+
+/* ABOUT */
+.about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:clamp(2rem,5vw,4rem);align-items:start;margin-top:3rem}
+.about-text p{color:var(--text-muted);margin-bottom:1.25rem;font-size:0.98rem;line-height:1.8}
+.about-text p:first-of-type{color:var(--text);font-size:1.05rem}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.stat-card{background:var(--bg);border:1px solid rgba(45,58,74,0.1);border-radius:var(--radius);padding:1.75rem;text-align:center;transition:var(--transition)}
+.stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+.stat-number{font-family:var(--font-heading);font-size:clamp(2rem,3.5vw,2.75rem);color:var(--primary);line-height:1.1;margin-bottom:0.35rem}
+.stat-number span{color:var(--accent)}
+.stat-label{font-size:0.82rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em}
+
+/* SERVICES */
+.services{background:var(--bg-warm)}
+.services-header{text-align:center;margin-bottom:3.5rem}
+.services-header .section-subtitle{margin:0 auto}
+.services-header .eyebrow{justify-content:center}
+.services-header .eyebrow::before{display:none}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.service-card{background:#fff;border-radius:var(--radius);padding:2rem 1.5rem;transition:var(--transition);border:1px solid rgba(45,58,74,0.06)}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+.service-icon{width:56px;height:56px;border-radius:var(--radius-sm);background:var(--accent-light);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem}
+.service-icon svg{width:26px;height:26px;stroke:var(--accent);stroke-width:1.8;fill:none}
+.service-card h3{font-family:var(--font-heading);font-size:1.15rem;color:var(--primary-dark);margin-bottom:0.65rem}
+.service-card p{font-size:0.88rem;color:var(--text-muted);line-height:1.7}
+
+/* WHY US */
+.why-us{background:var(--bg)}
+.why-header{text-align:center;margin-bottom:3.5rem}
+.why-header .section-subtitle{margin:0 auto}
+.why-header .eyebrow{justify-content:center}
+.why-header .eyebrow::before{display:none}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.why-card{text-align:center;padding:2rem 1.5rem}
+.why-icon{width:80px;height:80px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;transition:var(--transition)}
+.why-card:hover .why-icon{background:var(--accent);transform:scale(1.05)}
+.why-icon svg{width:32px;height:32px;stroke:#fff;stroke-width:1.8;fill:none}
+.why-card h3{font-family:var(--font-heading);font-size:1.2rem;color:var(--primary-dark);margin-bottom:0.65rem}
+.why-card p{font-size:0.9rem;color:var(--text-muted);line-height:1.7;max-width:320px;margin:0 auto}
+
+/* GALLERY */
+.gallery{background:var(--bg-warm)}
+.gallery-header{text-align:center;margin-bottom:3rem}
+.gallery-header .eyebrow{justify-content:center}
+.gallery-header .eyebrow::before{display:none}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.gallery-item{border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;position:relative}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s cubic-bezier(0.4,0,0.2,1)}
+.gallery-item:hover img{transform:scale(1.04)}
+.gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,46,0.3) 0%,transparent 50%);opacity:0;transition:var(--transition)}
+.gallery-item:hover::after{opacity:1}
+
+/* CONTACT */
+.contact{background:var(--primary-dark);color:#fff;position:relative;overflow:hidden}
+.contact::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;border-radius:50%;background:rgba(197,123,42,0.06)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+.contact-info .eyebrow{color:var(--accent)}
+.contact-info .section-title{color:#fff}
+.contact-info p.intro{color:rgba(255,255,255,0.7);margin-bottom:2rem;font-size:0.95rem;line-height:1.7}
+.contact-detail{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.5rem}
+.contact-detail-icon{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-detail-icon svg{width:20px;height:20px;stroke:var(--accent);stroke-width:2;fill:none}
+.contact-detail-text{font-size:0.92rem;color:rgba(255,255,255,0.85);line-height:1.6}
+.contact-detail-text strong{color:#fff;display:block;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.15rem}
+.contact-detail a{color:rgba(255,255,255,0.85);transition:var(--transition)}
+.contact-detail a:hover{color:var(--accent)}
+.map-btn{display:inline-flex;align-items:center;gap:0.5rem;margin-top:0.75rem;padding:0.65rem 1.5rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);color:#fff;font-size:0.88rem;font-weight:600;transition:var(--transition)}
+.map-btn:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+.map-btn svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+
+.contact-form{background:#fff;border-radius:var(--radius-lg);padding:clamp(2rem,4vw,2.75rem);box-shadow:var(--shadow-lg)}
+.contact-form h3{font-family:var(--font-heading);font-size:1.4rem;color:var(--primary-dark);margin-bottom:0.35rem}
+.contact-form p.form-sub{font-size:0.88rem;color:var(--text-muted);margin-bottom:1.75rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;letter-spacing:0.02em}
+.form-group input,.form-group textarea{width:100%;padding:0.8rem 1rem;border:1.5px solid rgba(45,58,74,0.15);border-radius:var(--radius-sm);font-family:var(--font-body);font-size:0.92rem;color:var(--text);background:var(--bg-soft);transition:var(--transition);outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(197,123,42,0.15);background:#fff}
+.form-group textarea{resize:vertical;min-height:110px}
+.form-submit{width:100%;padding:0.95rem;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:0.95rem;font-weight:700;cursor:pointer;transition:var(--transition);letter-spacing:0.02em}
+.form-submit:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(197,123,42,0.35)}
+
+/* FOOTER */
+footer{background:#111118;padding:2.5rem 0;text-align:center}
+footer .footer-brand{font-family:var(--font-heading);font-size:1.15rem;color:#fff;margin-bottom:0.35rem}
+footer .footer-tagline{font-size:0.85rem;color:rgba(255,255,255,0.4);margin-bottom:1rem}
+footer .footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.65s ease-out,transform 0.65s ease-out}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .contact-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .services-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn{width:100%;max-width:280px;justify-content:center}
+  .nav-links a:not(.nav-cta){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-brand">Hanson Israel</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <img src="https://serpapi.com/searches/69b712157af89949ff7333c1/images/bpmhlYqhKWubmtpF7A18wZZPnEqIPMh8YhKoB9O0KEA.png" alt="Hanson Israel Concrete Factory Hadera - aerial view of industrial facility" loading="eager">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Strength You Can <span>Build On</span></h1>
+    <p>Premium ready-mix concrete, aggregates, and building materials — backed by 60 years of experience and the global standards of Heidelberg Materials.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Request a Quote
+      </a>
+      <a href="#about" class="btn btn-ghost">Learn More</a>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"/><line x1="12" y1="6" x2="12" y2="18"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="eyebrow reveal">Who We Are</div>
+    <h2 class="section-title reveal">Six Decades of <br>Building Israel</h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Since 1963, Hanson Israel has been the trusted partner behind the nation's most ambitious construction projects — from residential towers and commercial developments to critical infrastructure that shapes communities.</p>
+        <p>As a proud subsidiary of the Heidelberg Materials Group, one of the world's largest integrated building materials companies, we combine global engineering standards with deep local expertise. Our Hadera factory is one of 25 concrete plants operating across Israel, ensuring reliable supply wherever your project demands.</p>
+        <p>We don't just deliver concrete — we deliver confidence. Every batch is precision-engineered, quality-tested, and dispatched with the logistical efficiency that keeps your project on schedule and on budget.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card reveal">
+          <div class="stat-number">60<span>+</span></div>
+          <div class="stat-label">Years of Operation</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-number">25</div>
+          <div class="stat-label">Plants Nationwide</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-number">5<span>/5</span></div>
+          <div class="stat-label">Customer Rating</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Active Quarries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="eyebrow reveal">What We Deliver</div>
+      <h2 class="section-title reveal">Complete Building <br>Materials Solutions</h2>
+      <p class="section-subtitle reveal">From foundation to finish, we supply the materials that make construction possible.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><rect x="9" y="12" width="6" height="8"/></svg>
+        </div>
+        <h3>Ready-Mix Concrete</h3>
+        <p>Custom-engineered concrete mixes for every application — from high-strength structural pours to specialized self-compacting formulations, delivered fresh to your site.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.93-7.07-2.83 2.83m-8.48 8.48-2.83 2.83m14.14 0-2.83-2.83M6.34 6.34 3.51 3.51"/></svg>
+        </div>
+        <h3>Aggregates & Quarry</h3>
+        <p>Crushed stone, gravel, sand, and specialty aggregates sourced from our own quarries — graded and tested to meet the most demanding structural specifications.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        </div>
+        <h3>Asphalt Production</h3>
+        <p>Hot-mix and warm-mix asphalt for roads, parking areas, and infrastructure projects — produced at our dedicated facilities for consistent quality and rapid delivery.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <h3>Cement Supply & Storage</h3>
+        <p>Bulk cement via our dedicated import terminal and regional storage facilities — ensuring uninterrupted supply for large-scale and ongoing construction operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us">
+  <div class="container">
+    <div class="why-header">
+      <div class="eyebrow reveal">Why Hanson Israel</div>
+      <h2 class="section-title reveal">Built Different. <br>Delivered Better.</h2>
+      <p class="section-subtitle reveal">When your reputation rides on every pour, you need a supplier who never cuts corners.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>On-Time, Every Time</h3>
+        <p>With 25 plants strategically positioned across Israel, we guarantee dispatch times that keep your crews working — not waiting. Downtime is money; we don't waste either.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3>Global Quality Standards</h3>
+        <p>As part of Heidelberg Materials — operating in 50+ countries — every mix we produce meets international specifications. ISO-certified processes from batch plant to building site.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Dedicated Project Support</h3>
+        <p>Our engineers work with your team to specify the right mix for your application — optimizing strength, workability, and cost. We're partners, not just suppliers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <div class="eyebrow reveal">Our Operations</div>
+      <h2 class="section-title reveal">See the Scale</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <img src="https://serpapi.com/searches/69b712157af89949ff7333c1/images/bpmhlYqhKWubmtpF7A18wZZPnEqIPMh8YhKoB9O0KEA.png" alt="Hanson Israel Hadera concrete factory - aerial view" loading="lazy">
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="https://serpapi.com/searches/69b712157af89949ff7333c1/images/QdmBbGZVOFJAyM2FAJBn17C7MNqhCh1zrw2Uvf0Jmgw.jpeg" alt="Hanson Israel concrete production facility" loading="lazy">
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="https://serpapi.com/searches/69b712157af89949ff7333c1/images/rODxt5_ySLtB3S3VYPRoMh5qhlePlw0aFQUS39CQk2s.jpeg" alt="Hanson Israel industrial operations" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="eyebrow reveal">Get In Touch</div>
+        <h2 class="section-title reveal">Let's Build Something Together</h2>
+        <p class="intro reveal">Whether you need a quote for ready-mix concrete, aggregates pricing, or want to discuss a large-scale project — our team at the Hadera factory is ready to help.</p>
+
+        <div class="contact-detail reveal">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Address</strong>
+            3, Hadera, Israel
+          </div>
+        </div>
+
+        <div class="contact-detail reveal">
+          <div class="contact-detail-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <strong>Phone</strong>
+            <a href="tel:04-633-2226">04-633-2226</a>
+          </div>
+        </div>
+
+        <a href="https://maps.google.com/?cid=11197050717984318773" target="_blank" rel="noopener" class="map-btn reveal">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          Open in Google Maps
+        </a>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Request a Quote</h3>
+        <p class="form-sub">Fill out the form and we'll get back to you within one business day.</p>
+        <form onsubmit="event.preventDefault();this.querySelector('.form-submit').textContent='Message Sent ✓';this.querySelector('.form-submit').style.background='#2d6a4f'">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. 050-123-4567" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Project Details</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project — type of material, volume, timeline…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send My Request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-brand">Hanson Israel</div>
+    <div class="footer-tagline">A Heidelberg Materials Company · Hadera Concrete Factory</div>
+    <div class="footer-copy">© 2025 Hanson (Israel) Ltd. Concrete Factory Hadera. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// Navbar scroll effect
+const nav = document.getElementById('navbar');
+const onScroll = () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// Intersection Observer for reveal animations
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
