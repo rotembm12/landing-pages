@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOOD YOU LIKE - עיצוב בעץ | נגרות בהתאמה אישית</title>
+<meta name="description" content="נגריה בהתאמה אישית בעין שמר. שולחנות, ארונות, דלתות ועוד מאלון מלא ושילובי ברזל.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #7C5A3C;
+  --primary-dark: #5D4330;
+  --accent: #C8883B;
+  --accent-dark: #A87030;
+  --text: #1E1E2A;
+  --text-muted: #6B7280;
+  --bg: #ffffff;
+  --bg-soft: #FAF6F2;
+  --radius-sm: 6px;
+  --radius: 14px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.12);
+  --transition: 0.28s cubic-bezier(0.4,0,0.2,1);
+  --font-heading: 'Rubik', sans-serif;
+  --font-body: 'Heebo', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+button { font-family: var(--font-body); cursor: pointer; border: none; }
+input, textarea { font-family: var(--font-body); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+
+/* ═══ NAV ═══ */
+.nav {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  height: 68px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 24px;
+}
+.nav-brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #fff;
+  letter-spacing: 0.02em;
+  transition: color var(--transition);
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+.nav-link {
+  color: rgba(255,255,255,0.9);
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: color var(--transition);
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  inset-inline-start: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+.nav-link:hover::after { width: 100%; }
+.lang-toggle {
+  border: 1.5px solid rgba(255,255,255,0.7);
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: transparent;
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: var(--font-heading);
+  letter-spacing: 0.04em;
+}
+.lang-toggle:hover { background: rgba(255,255,255,0.15); }
+.nav.scrolled { background: rgba(255,255,255,0.97); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 20px rgba(0,0,0,0.07); }
+.nav.scrolled .nav-brand { color: var(--text); }
+.nav.scrolled .nav-link { color: var(--text); }
+.nav.scrolled .lang-toggle { color: var(--text); border-color: rgba(0,0,0,0.2); }
+.nav.scrolled .lang-toggle:hover { background: var(--bg-soft); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1010;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: var(--transition);
+}
+.nav.scrolled .hamburger span { background: var(--text); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(30,30,42,0.97);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+.mobile-menu a:hover { color: var(--accent); }
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('https://serpapi.com/searches/69b7140aae678cbeb49c4f58/images/59eya43yFx_eowFx_ZwV_-b-ZJjki5gK599BZZNo81c.png') center/cover no-repeat;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding-inline: 24px;
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.hero p {
+  color: rgba(255,255,255,0.85);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 50px;
+  transition: var(--transition);
+  border: none;
+}
+.btn-primary:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200,136,59,0.35);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 14px 36px;
+  border-radius: 50px;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  transition: var(--transition);
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.8);
+  transform: translateY(-2px);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+.scroll-indicator svg { opacity: 0.6; }
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
+}
+
+/* ═══ SECTIONS SHARED ═══ */
+.section { padding: 100px 0; }
+.section-soft { background: var(--bg-soft); }
+.eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+}
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.section-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.8;
+}
+.section-header { margin-bottom: 3.5rem; }
+.section-header-center { text-align: center; }
+.section-header-center .section-subtitle { margin-inline: auto; }
+
+/* ═══ ABOUT ═══ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text p {
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+.about-text p:first-of-type { color: var(--text); font-weight: 500; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: var(--transition);
+}
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+/* ═══ SERVICES ═══ */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.service-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius);
+  padding: 2rem;
+  transition: var(--transition);
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.service-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  background: rgba(124,90,60,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--primary);
+}
+.service-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.service-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+/* ═══ WHY US ═══ */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+.why-item { text-align: center; }
+.why-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  color: var(--primary);
+  border: 2px solid rgba(124,90,60,0.12);
+  transition: var(--transition);
+}
+.why-item:hover .why-icon {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+.why-item h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--text);
+}
+.why-item p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+/* ═══ GALLERY ═══ */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.gallery-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.gallery-item:hover img { transform: scale(1.05); }
+
+/* ═══ CONTACT ═══ */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+.contact-info h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  font-size: 1.02rem;
+}
+.contact-detail svg { flex-shrink: 0; color: var(--primary); }
+.contact-detail a { color: var(--text); font-weight: 500; transition: color var(--transition); }
+.contact-detail a:hover { color: var(--accent); }
+.btn-maps {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 50px;
+  margin-top: 0.75rem;
+  transition: var(--transition);
+}
+.btn-maps:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(124,90,60,0.3);
+}
+
+.contact-form {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.form-group { margin-bottom: 1.25rem; }
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(124,90,60,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.btn-submit {
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  border: none;
+  transition: var(--transition);
+}
+.btn-submit:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(200,136,59,0.3);
+}
+
+/* ═══ FOOTER ═══ */
+.footer {
+  background: #1a1a2e;
+  color: rgba(255,255,255,0.5);
+  padding: 3rem 0;
+  text-align: center;
+}
+.footer-brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.footer-tagline {
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+  color: rgba(255,255,255,0.4);
+}
+.footer-copy { font-size: 0.82rem; }
+
+/* ═══ REVEAL ANIMATIONS ═══ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal:nth-child(4) { transition-delay: 0.3s; }
+.stagger-1 { transition-delay: 0s !important; }
+.stagger-2 { transition-delay: 0.1s !important; }
+.stagger-3 { transition-delay: 0.2s !important; }
+.stagger-4 { transition-delay: 0.3s !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .scroll-indicator { animation: none; }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .section { padding: 72px 0; }
+}
+
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .stats-grid { gap: 1rem; }
+  .stat-card { padding: 1.25rem 1rem; }
+  .section { padding: 56px 0; }
+  .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+  .contact-form { padding: 1.75rem; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; max-width: 280px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">WOOD YOU LIKE</a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#about" class="nav-link" data-i18n="nav_about">אודות</a></li>
+        <li><a href="#services" class="nav-link" data-i18n="nav_services">שירותים</a></li>
+        <li><a href="#gallery" class="nav-link" data-i18n="nav_gallery">גלריה</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav_contact">צור קשר</a></li>
+      </ul>
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language" data-i18n="lang_toggle">EN</button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link" data-i18n="nav_about">אודות</a>
+  <a href="#services" class="mobile-link" data-i18n="nav_services">שירותים</a>
+  <a href="#gallery" class="mobile-link" data-i18n="nav_gallery">גלריה</a>
+  <a href="#contact" class="mobile-link" data-i18n="nav_contact">צור קשר</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" role="img" aria-label="Custom wood furniture"></div>
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">הרהיט שחלמתם עליו — מעץ אמיתי, בעבודת יד</h1>
+    <p data-i18n="hero_subtitle">נגריה בהתאמה אישית בעין שמר. שולחנות, ארונות, דלתות ועוד — מאלון מלא ושילובי ברזל, בדיוק לפי המידות והחלום שלכם.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary" data-i18n="hero_cta">דברו איתנו</a>
+      <a href="#about" class="btn-ghost" data-i18n="hero_cta2">גלו עוד</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <div class="eyebrow" data-i18n="about_eyebrow">הסיפור שלנו</div>
+        <h2 class="section-title" data-i18n="about_title">נגרות אמיתית, בלי פשרות</h2>
+        <p data-i18n="about_p1">ב-WOOD YOU LIKE אנחנו מאמינים שרהיט טוב הוא לא רק פונקציונלי — הוא חלק מהבית, מהסיפור שלכם. כל פריט שיוצא מהסדנה שלנו עובר תהליך קפדני של תכנון, בחירת חומרים ועבודת יד מדויקת.</p>
+        <p data-i18n="about_p2">אנחנו מתמחים בעבודה עם אלון מלא, שילובי עץ וברזל, ומציעים מגוון שירותים — מייצור רהיטים בהתאמה אישית ועד רסטורציה וחידוש של פריטים ישנים. כל פרויקט מתחיל בשיחה אישית ומסתיים ברהיט שנבנה בדיוק בשבילכם.</p>
+        <p data-i18n="about_p3">הסדנה שלנו ממוקמת בעין שמר, בלב השרון, ומשרתת לקוחות מכל הארץ.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal stagger-1">
+          <div class="stat-number" data-i18n="stat1_num">100+</div>
+          <div class="stat-label" data-i18n="stat1_label">פרויקטים שהושלמו</div>
+        </div>
+        <div class="stat-card reveal stagger-2">
+          <div class="stat-number" data-i18n="stat2_num">10+</div>
+          <div class="stat-label" data-i18n="stat2_label">שנות ניסיון</div>
+        </div>
+        <div class="stat-card reveal stagger-3">
+          <div class="stat-number" data-i18n="stat3_num">100%</div>
+          <div class="stat-label" data-i18n="stat3_label">התאמה אישית</div>
+        </div>
+        <div class="stat-card reveal stagger-4">
+          <div class="stat-number" data-i18n="stat4_num">∞</div>
+          <div class="stat-label" data-i18n="stat4_label">אפשרויות עיצוב</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section-soft" id="services">
+  <div class="container">
+    <div class="section-header section-header-center reveal">
+      <div class="eyebrow" data-i18n="services_eyebrow">מה אנחנו עושים</div>
+      <h2 class="section-title" data-i18n="services_title">שירותים</h2>
+      <p class="section-subtitle" data-i18n="services_subtitle">מהרעיון הראשון ועד למוצר המוגמר — אנחנו איתכם בכל שלב</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal stagger-1">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="3" rx="1"/><line x1="5" y1="9" x2="5" y2="19"/><line x1="19" y1="9" x2="19" y2="19"/><line x1="5" y1="14" x2="19" y2="14"/></svg>
+        </div>
+        <h3 data-i18n="service1_name">רהיטים בהתאמה אישית</h3>
+        <p data-i18n="service1_desc">שולחנות אוכל, מזנונים, ארונות ספרים ועוד — מאלון מלא, בכל מידה שתרצו. עיצוב ייחודי שמתאים בדיוק לחלל שלכם.</p>
+      </div>
+      <div class="service-card reveal stagger-2">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="1.5"/><line x1="5" y1="8" x2="19" y2="8"/><line x1="5" y1="14" x2="19" y2="14"/><circle cx="15.5" cy="11" r="1" fill="currentColor"/></svg>
+        </div>
+        <h3 data-i18n="service2_name">דלתות ותריסים</h3>
+        <p data-i18n="service2_desc">דלתות תריס מאלון מלא שמוסיפות אופי וחום לכל בית. ייצור מדויק והתקנה מקצועית.</p>
+      </div>
+      <div class="service-card reveal stagger-3">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3L4 13l3 3L17 6z"/><path d="M10 21h10"/><path d="M16 15l4-4"/><circle cx="18" cy="18" r="3"/></svg>
+        </div>
+        <h3 data-i18n="service3_name">שילובי עץ וברזל</h3>
+        <p data-i18n="service3_desc">שולחנות עם רגלי ברזל, מדפים ומסגרות — שילוב מודרני של חומרים שיוצר מראה עוצמתי ועמיד.</p>
+      </div>
+      <div class="service-card reveal stagger-4">
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M21.5 8A10 10 0 0 0 5 5.3L2.5 8"/><path d="M2.5 16a10 10 0 0 0 16.5 2.7L21.5 16"/></svg>
+        </div>
+        <h3 data-i18n="service4_name">רסטורציה וחידוש</h3>
+        <p data-i18n="service4_desc">חידוש רהיטים ישנים, צביעה מקצועית ושיקום — כי לפעמים הפריט הכי יפה הוא זה שכבר יש לכם.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-header section-header-center reveal">
+      <div class="eyebrow" data-i18n="why_eyebrow">למה דווקא אנחנו</div>
+      <h2 class="section-title" data-i18n="why_title">מה מבדיל אותנו</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal stagger-1">
+        <div class="why-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11.5V14l-3.2 2.6a1 1 0 0 0 .6 1.8H9l1 3.6a1 1 0 0 0 1 .7h2a1 1 0 0 0 1-.7l1-3.6h4.6a1 1 0 0 0 .6-1.8L17 14v-2.5"/><path d="M12 2a5 5 0 0 1 5 5c0 2-1.5 3.5-3 4.5h-4C8.5 10.5 7 9 7 7a5 5 0 0 1 5-5z"/></svg>
+        </div>
+        <h3 data-i18n="why1_label">עבודת יד אמיתית</h3>
+        <p data-i18n="why1_desc">כל פריט נבנה ידנית בסדנה שלנו, לא מיובא ולא מיוצר בשיטות תעשייתיות. אתם מרגישים את ההבדל.</p>
+      </div>
+      <div class="why-item reveal stagger-2">
+        <div class="why-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5.25 3.75 10.15 9 11.25 5.25-1.1 9-6 9-11.25V7l-9-5z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3 data-i18n="why2_label">חומרים איכותיים</h3>
+        <p data-i18n="why2_desc">אנחנו עובדים עם אלון מלא, ברזל איכותי וחומרי גמר מובחרים. בלי קיצורי דרך, בלי MDF זול.</p>
+      </div>
+      <div class="why-item reveal stagger-3">
+        <div class="why-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 data-i18n="why3_label">שירות אישי מההתחלה לסוף</h3>
+        <p data-i18n="why3_desc">מהפגישה הראשונה ועד ההתקנה — אתם עובדים ישירות מול הנגר. בלי מתווכים, בלי הפתעות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section section-soft" id="gallery">
+  <div class="container">
+    <div class="section-header section-header-center reveal">
+      <div class="eyebrow" data-i18n="gallery_eyebrow">העבודות שלנו</div>
+      <h2 class="section-title" data-i18n="gallery_title">גלריה</h2>
+      <p class="section-subtitle" data-i18n="gallery_subtitle">הצצה לפרויקטים שיצאו מהסדנה</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal stagger-1">
+        <img src="https://serpapi.com/searches/69b7140aae678cbeb49c4f58/images/59eya43yFx_eowFx_ZwV_-b-ZJjki5gK599BZZNo81c.png" alt="Custom solid oak dining table with iron legs" loading="lazy">
+      </div>
+      <div class="gallery-item reveal stagger-2">
+        <img src="https://serpapi.com/searches/69b7140aae678cbeb49c4f58/images/LaYpl7pPT_Hwf41ilqiS0Mn1KsTBMjtKkBmvlNnC5mk.jpeg" alt="Handcrafted wood furniture piece" loading="lazy">
+      </div>
+      <div class="gallery-item reveal stagger-3">
+        <img src="https://serpapi.com/searches/69b7140aae678cbeb49c4f58/images/-rfNyX3iWlkmXDM309xWzCvtKeE0b_RUEPRWA0R--xM.jpeg" alt="Custom bookshelf and cabinet design" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header section-header-center reveal">
+      <div class="eyebrow" data-i18n="contact_eyebrow">בואו נדבר</div>
+      <h2 class="section-title" data-i18n="contact_title">צרו איתנו קשר</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-detail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span data-i18n="contact_address">עין שמר, ישראל</span>
+        </div>
+        <div class="contact-detail">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.07 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 11.91a16 16 0 0 0 6 6l2.27-2.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+972526044547" data-i18n="contact_phone">052-604-4547</a>
+        </div>
+        <a href="https://maps.google.com/?cid=7826860611506765906" target="_blank" rel="noopener" class="btn-maps">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span data-i18n="contact_maps">נווטו אלינו</span>
+        </a>
+      </div>
+      <form class="contact-form reveal" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <input type="text" data-i18n-ph="form_name" placeholder="שם מלא" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" data-i18n-ph="form_phone" placeholder="טלפון" required>
+        </div>
+        <div class="form-group">
+          <textarea data-i18n-ph="form_message" placeholder="ספרו לנו על הפרויקט שלכם" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn-submit" data-i18n="form_submit">שלחו הודעה</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">WOOD YOU LIKE</div>
+    <div class="footer-tagline" data-i18n="footer_tagline">נגרות בהתאמה אישית | עין שמר</div>
+    <div class="footer-copy" data-i18n="footer_rights">© 2025 WOOD YOU LIKE עיצוב בעץ. כל הזכויות שמורות.</div>
+  </div>
+</footer>
+
+<script>
+const t = {
+  he: {
+    nav_about: "אודות",
+    nav_services: "שירותים",
+    nav_gallery: "גלריה",
+    nav_contact: "צור קשר",
+    lang_toggle: "EN",
+    hero_title: "הרהיט שחלמתם עליו — מעץ אמיתי, בעבודת יד",
+    hero_subtitle: "נגריה בהתאמה אישית בעין שמר. שולחנות, ארונות, דלתות ועוד — מאלון מלא ושילובי ברזל, בדיוק לפי המידות והחלום שלכם.",
+    hero_cta: "דברו איתנו",
+    hero_cta2: "גלו עוד",
+    about_eyebrow: "הסיפור שלנו",
+    about_title: "נגרות אמיתית, בלי פשרות",
+    about_p1: "ב-WOOD YOU LIKE אנחנו מאמינים שרהיט טוב הוא לא רק פונקציונלי — הוא חלק מהבית, מהסיפור שלכם. כל פריט שיוצא מהסדנה שלנו עובר תהליך קפדני של תכנון, בחירת חומרים ועבודת יד מדויקת.",
+    about_p2: "אנחנו מתמחים בעבודה עם אלון מלא, שילובי עץ וברזל, ומציעים מגוון שירותים — מייצור רהיטים בהתאמה אישית ועד רסטורציה וחידוש של פריטים ישנים. כל פרויקט מתחיל בשיחה אישית ומסתיים ברהיט שנבנה בדיוק בשבילכם.",
+    about_p3: "הסדנה שלנו ממוקמת בעין שמר, בלב השרון, ומשרתת לקוחות מכל הארץ.",
+    stat1_num: "100+",
+    stat1_label: "פרויקטים שהושלמו",
+    stat2_num: "10+",
+    stat2_label: "שנות ניסיון",
+    stat3_num: "100%",
+    stat3_label: "התאמה אישית",
+    stat4_num: "∞",
+    stat4_label: "אפשרויות עיצוב",
+    services_eyebrow: "מה אנחנו עושים",
+    services_title: "שירותים",
+    services_subtitle: "מהרעיון הראשון ועד למוצר המוגמר — אנחנו איתכם בכל שלב",
+    service1_name: "רהיטים בהתאמה אישית",
+    service1_desc: "שולחנות אוכל, מזנונים, ארונות ספרים ועוד — מאלון מלא, בכל מידה שתרצו. עיצוב ייחודי שמתאים בדיוק לחלל שלכם.",
+    service2_name: "דלתות ותריסים",
+    service2_desc: "דלתות תריס מאלון מלא שמוסיפות אופי וחום לכל בית. ייצור מדויק והתקנה מקצועית.",
+    service3_name: "שילובי עץ וברזל",
+    service3_desc: "שולחנות עם רגלי ברזל, מדפים ומסגרות — שילוב מודרני של חומרים שיוצר מראה עוצמתי ועמיד.",
+    service4_name: "רסטורציה וחידוש",
+    service4_desc: "חידוש רהיטים ישנים, צביעה מקצועית ושיקום — כי לפעמים הפריט הכי יפה הוא זה שכבר יש לכם.",
+    why_eyebrow: "למה דווקא אנחנו",
+    why_title: "מה מבדיל אותנו",
+    why1_label: "עבודת יד אמיתית",
+    why1_desc: "כל פריט נבנה ידנית בסדנה שלנו, לא מיובא ולא מיוצר בשיטות תעשייתיות. אתם מרגישים את ההבדל.",
+    why2_label: "חומרים איכותיים",
+    why2_desc: "אנחנו עובדים עם אלון מלא, ברזל איכותי וחומרי גמר מובחרים. בלי קיצורי דרך, בלי MDF זול.",
+    why3_label: "שירות אישי מההתחלה לסוף",
+    why3_desc: "מהפגישה הראשונה ועד ההתקנה — אתם עובדים ישירות מול הנגר. בלי מתווכים, בלי הפתעות.",
+    gallery_eyebrow: "העבודות שלנו",
+    gallery_title: "גלריה",
+    gallery_subtitle: "הצצה לפרויקטים שיצאו מהסדנה",
+    contact_eyebrow: "בואו נדבר",
+    contact_title: "צרו איתנו קשר",
+    contact_address: "עין שמר, ישראל",
+    contact_phone: "052-604-4547",
+    contact_maps: "נווטו אלינו",
+    form_name: "שם מלא",
+    form_phone: "טלפון",
+    form_message: "ספרו לנו על הפרויקט שלכם",
+    form_submit: "שלחו הודעה",
+    footer_tagline: "נגרות בהתאמה אישית | עין שמר",
+    footer_rights: "© 2025 WOOD YOU LIKE עיצוב בעץ. כל הזכויות שמורות."
+  },
+  en: {
+    nav_about: "About",
+    nav_services: "Services",
+    nav_gallery: "Gallery",
+    nav_contact: "Contact",
+    lang_toggle: "עב",
+    hero_title: "Furniture That Tells Your Story — Handcrafted in Solid Wood",
+    hero_subtitle: "Custom carpentry workshop in Ein Shemer. Tables, cabinets, doors & more — built from solid oak and iron, exactly to your vision.",
+    hero_cta: "Get in Touch",
+    hero_cta2: "Learn More",
+    about_eyebrow: "Our Story",
+    about_title: "Real Craftsmanship, No Compromises",
+    about_p1: "At WOOD YOU LIKE, we believe great furniture isn't just functional — it's part of your home, part of your story. Every piece that leaves our workshop goes through a meticulous process of planning, material selection, and precise handwork.",
+    about_p2: "We specialize in solid oak, wood and iron combinations, and offer a range of services — from custom furniture manufacturing to restoration of beloved old pieces. Every project starts with a personal conversation and ends with furniture built exactly for you.",
+    about_p3: "Our workshop is located in Ein Shemer, in the heart of the Sharon region, serving clients from across Israel.",
+    stat1_num: "100+",
+    stat1_label: "Projects Completed",
+    stat2_num: "10+",
+    stat2_label: "Years of Experience",
+    stat3_num: "100%",
+    stat3_label: "Custom Made",
+    stat4_num: "∞",
+    stat4_label: "Design Possibilities",
+    services_eyebrow: "What We Do",
+    services_title: "Services",
+    services_subtitle: "From the first idea to the finished product — we're with you every step of the way",
+    service1_name: "Custom Furniture",
+    service1_desc: "Dining tables, sideboards, bookshelves & more — from solid oak, in any size you need. Unique designs tailored perfectly to your space.",
+    service2_name: "Doors & Shutters",
+    service2_desc: "Solid oak shutter doors that add character and warmth to any home. Precision manufacturing and professional installation.",
+    service3_name: "Wood & Iron Combinations",
+    service3_desc: "Tables with iron legs, shelves and frames — a modern material blend that creates a powerful and durable aesthetic.",
+    service4_name: "Restoration & Renewal",
+    service4_desc: "Renewing old furniture, professional painting and restoration — because sometimes the most beautiful piece is one you already own.",
+    why_eyebrow: "Why Choose Us",
+    why_title: "What Sets Us Apart",
+    why1_label: "True Handcraftsmanship",
+    why1_desc: "Every piece is built by hand in our workshop — not imported, not mass-produced. You can feel the difference in every detail.",
+    why2_label: "Premium Materials",
+    why2_desc: "We work with solid oak, quality iron, and select finishes. No shortcuts, no cheap MDF substitutes.",
+    why3_label: "Personal Service, Start to Finish",
+    why3_desc: "From the first meeting to installation — you work directly with the craftsman. No middlemen, no surprises.",
+    gallery_eyebrow: "Our Work",
+    gallery_title: "Gallery",
+    gallery_subtitle: "A glimpse into projects from our workshop",
+    contact_eyebrow: "Let's Talk",
+    contact_title: "Get in Touch",
+    contact_address: "Ein Shemer, Israel",
+    contact_phone: "052-604-4547",
+    contact_maps: "Navigate to Us",
+    form_name: "Full Name",
+    form_phone: "Phone",
+    form_message: "Tell us about your project",
+    form_submit: "Send Message",
+    footer_tagline: "Custom Carpentry | Ein Shemer",
+    footer_rights: "© 2025 WOOD YOU LIKE עיצוב בעץ. All rights reserved."
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'he';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (t[lang][key]) el.textContent = t[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.dataset.i18nPh;
+    if (t[lang][key]) el.placeholder = t[lang][key];
+  });
+  localStorage.setItem('lang', lang);
+}
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  setLang(currentLang === 'he' ? 'en' : 'he');
+});
+
+// Nav scroll effect
+const
